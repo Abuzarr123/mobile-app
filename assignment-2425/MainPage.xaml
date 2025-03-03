@@ -10,13 +10,7 @@
             Spacing="25"
             VerticalOptions="Center">
 
-            <!-- App Logo or Image -->
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                HorizontalOptions="Center"
-                SemanticProperties.Description="dot net bot in a race car number eight" />
+            
 
             <!-- Welcome Message -->
             <Label
