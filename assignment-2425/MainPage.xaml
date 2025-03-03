@@ -2,16 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="assignment_2425.MainPage"
-             Title="Welcome to Nutrition Tracker App">
+             Title="Welcome to my Nutrition Tracker App">
 
     <ScrollView>
         <VerticalStackLayout
             Padding="30"
             Spacing="25"
             VerticalOptions="Center">
-
-            
-
             <!-- Welcome Message -->
             <Label
                 Text="Hello, welcome to your personal nutrition app. This app will help you track your nutrition intake that you are having on a daily basis!"
