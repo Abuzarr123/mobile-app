@@ -12,7 +12,7 @@ namespace assignment_2425
         {
             InitializeComponent();
 
-            // Initialize FirebaseAuthProvider with your Firebase API key
+            // Initialize FirebaseAuthProvider with my Firebase API key
             authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBVnVmjhhb3tdb8XaIT_31IsEwYjQjN980"));
         }
 
@@ -34,7 +34,7 @@ namespace assignment_2425
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(email, password);
 
                 // Navigate to the main app page after successful login
-                await Navigation.PushAsync(new NutritionPage()); // Replace with your main app page
+                await Navigation.PushAsync(new NutritionPage()); 
             }
             catch (FirebaseAuthException ex)
             {

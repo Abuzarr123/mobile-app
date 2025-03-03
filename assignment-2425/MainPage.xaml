@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:assignment_2425"
              x:Class="assignment_2425.MainPage"
-             Title="Welcome to my Nutrition Tracker App">
+             Title="Welcome to Nutrition Tracker App">
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
 
     <ScrollView>
         <VerticalStackLayout
@@ -21,7 +26,7 @@
             <Button
                 x:Name="SignInButton"
                 Text="Sign Up / Log In"
-                Clicked="OnSignUpClicked"
+                Command="{Binding SignUpCommand}"
                 HorizontalOptions="Center"
                 Padding="30,15"
                 BackgroundColor="#007BFF"
