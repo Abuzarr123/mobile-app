@@ -30,7 +30,7 @@
             <Button
                 x:Name="SignInButton"
                 Text="Sign Up / Log In"
-                Clicked="OnSignInClicked"
+                Clicked="OnSignUpClicked"
                 HorizontalOptions="Center"
                 Padding="30,15"
                 BackgroundColor="#007BFF"

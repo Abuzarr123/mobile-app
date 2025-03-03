@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="assignment_2425.LoginPage"
+             Title="Login">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="15">
+            <!-- Email Input -->
+            <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" />
+
+            <!-- Password Input -->
+            <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
+
+            <!-- Login Button -->
+            <Button Text="Log In" Clicked="OnLoginClicked" />
+
+            <!-- Sign Up Button -->
+            <Button Text="Sign Up" Clicked="OnSignUpClicked" />
+
+            <!-- Error Message -->
+            <Label x:Name="ErrorMessageLabel" TextColor="Red" IsVisible="False" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "600138944832",
+    "project_id": "nutritiontrackerapp-adabf",
+    "storage_bucket": "nutritiontrackerapp-adabf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600138944832:android:db1cc79a497984993e6aa5",
+        "android_client_info": {
+          "package_name": "com.Abuzarr.nutritiontracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVnVmjhhb3tdb8XaIT_31IsEwYjQjN980"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

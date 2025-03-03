@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.Controls.PlatformConfiguration;
+using Microsoft.Maui.Hosting;
 
 namespace assignment_2425
 {
@@ -17,7 +20,7 @@ namespace assignment_2425
 
 #if DEBUG
     		builder.Logging.AddDebug();
-#endif
+#endif  
 
             return builder.Build();
         }
