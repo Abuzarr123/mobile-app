@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:assignment_2425"
     Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False"
     Title="assignment_2425">
 
     <ShellContent
@@ -18,8 +19,10 @@
         Route="LoginPage" />
 
     <ShellContent
-        Title="Nutrition"
-        ContentTemplate="{DataTemplate local:NutritionPage}"
-        Route="NutritionPage" />
+              ContentTemplate="{DataTemplate local:NutritionPage}"
+              Route="NutritionPage" />
+
+
+
 
 </Shell>

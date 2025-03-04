@@ -17,10 +17,11 @@ namespace assignment_2425
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
 #if DEBUG
-    		builder.Logging.AddDebug();
-#endif  
+            builder.Logging.AddDebug();
+#endif
+
+
 
             return builder.Build();
         }

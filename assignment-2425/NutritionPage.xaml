@@ -1,12 +1,56 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="assignment_2425.NutritionPage"
-             Title="NutritionPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Nutrition Tracker">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Daily Nutrition Intake" FontSize="22" FontAttributes="Bold" />
+
+            <!-- Manual Calorie Input -->
+            <Entry x:Name="CalorieEntry"
+                   Placeholder="Enter calories"
+                   Keyboard="Numeric"
+                   HorizontalOptions="FillAndExpand" />
+
+            <Button Text="Add Calories"
+                    Clicked="OnAddCaloriesClicked"
+                    BackgroundColor="#007BFF"
+                    TextColor="White"
+                    CornerRadius="25"
+                    WidthRequest="200"/>
+
+            <!-- Display Logged Calories -->
+            <Label Text="Today's Total Calories:"
+                   FontSize="18"
+                   FontAttributes="Bold"/>
+            <Label x:Name="TotalCaloriesLabel"
+                   FontSize="20"
+                   TextColor="Black"/>
+
+            <!-- Display List of Logged Food Items -->
+            <CollectionView x:Name="FoodLogCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" BorderColor="Gray">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold"/>
+                                <Label Text="{Binding Calories}" FontSize="16"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Reset Daily Calories -->
+            <Button Text="Reset Calories"
+                    Clicked="OnResetCaloriesClicked"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    CornerRadius="25"
+                    WidthRequest="200"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

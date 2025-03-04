@@ -16,6 +16,11 @@ namespace assignment_2425
             authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBVnVmjhhb3tdb8XaIT_31IsEwYjQjN980"));
         }
 
+        private async void OnBackClicked(object sender, EventArgs e)
+        {
+            // Navigate back to the MainPage
+            await Navigation.PushAsync(new MainPage()); // Replace with your main app page
+        }
         private async void OnLoginClicked(object sender, EventArgs e)
         {
             string email = EmailEntry.Text;
