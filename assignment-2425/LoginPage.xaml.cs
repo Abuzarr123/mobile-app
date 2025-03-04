@@ -1,5 +1,5 @@
 using Firebase.Auth;
-using System.Diagnostics;
+using System;
 
 namespace assignment_2425
 {
@@ -12,7 +12,7 @@ namespace assignment_2425
         {
             InitializeComponent();
 
-            // Initialize FirebaseAuthProvider with my Firebase API key
+            // Initialize FirebaseAuthProvider with Firebase API key
             authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBVnVmjhhb3tdb8XaIT_31IsEwYjQjN980"));
         }
 
@@ -21,6 +21,7 @@ namespace assignment_2425
             // Navigate back to the MainPage
             await Navigation.PushAsync(new MainPage()); // Replace with your main app page
         }
+
         private async void OnLoginClicked(object sender, EventArgs e)
         {
             string email = EmailEntry.Text;
@@ -28,8 +29,7 @@ namespace assignment_2425
 
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
             {
-                ErrorMessageLabel.Text = "Please enter both email and password.";
-                ErrorMessageLabel.IsVisible = true;
+                await DisplayAlert("Login Error", "Please enter both email and password.", "OK");
                 return;
             }
 
@@ -39,12 +39,15 @@ namespace assignment_2425
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(email, password);
 
                 // Navigate to the main app page after successful login
-                await Navigation.PushAsync(new NutritionPage()); 
+                await Navigation.PushAsync(new NutritionPage());
             }
             catch (FirebaseAuthException ex)
             {
-                ErrorMessageLabel.Text = "Login failed: " + ex.Message;
-                ErrorMessageLabel.IsVisible = true;
+                await DisplayAlert("Login Failed", "Error: " + ex.Message, "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Login Failed", "An unexpected error occurred: " + ex.Message, "OK");
             }
         }
 
@@ -55,8 +58,13 @@ namespace assignment_2425
 
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
             {
-                ErrorMessageLabel.Text = "Please enter both email and password.";
-                ErrorMessageLabel.IsVisible = true;
+                await DisplayAlert("Sign Up Error", "Please enter both email and password.", "OK");
+                return;
+            }
+
+            if (password.Length < 6)
+            {
+                await DisplayAlert("Sign Up Error", "Password must be at least 6 characters long.", "OK");
                 return;
             }
 
@@ -66,12 +74,15 @@ namespace assignment_2425
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
 
                 // Navigate to the main app page after successful sign-up
-                await Navigation.PushAsync(new NutritionPage()); // Replace with your main app page
+                await Navigation.PushAsync(new NutritionPage());
             }
             catch (FirebaseAuthException ex)
             {
-                ErrorMessageLabel.Text = "Sign-up failed: " + ex.Message;
-                ErrorMessageLabel.IsVisible = true;
+                await DisplayAlert("Sign Up Failed", "Error: " + ex.Message, "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Sign Up Failed", "An unexpected error occurred: " + ex.Message, "OK");
             }
         }
     }
