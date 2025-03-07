@@ -14,7 +14,7 @@
             Padding="30"
             Spacing="25"
             VerticalOptions="Center">
-            <!-- Welcome Message -->
+            <!-- Message to the user with info about the app -->
             <Label
                 Text="Hello, welcome to your personal nutrition app. This app will help you track your nutrition intake that you are having on a daily basis!"
                 FontSize="18"
@@ -22,7 +22,7 @@
                 HorizontalTextAlignment="Center"
                 SemanticProperties.HeadingLevel="Level1" />
 
-            <!-- Pretty Sign Up/Log In Button -->
+            <!-- Sign up/Log in button -->
             <Button
                 x:Name="SignInButton"
                 Text="Sign Up / Log In"
@@ -35,7 +35,7 @@
                 FontAttributes="Bold"
                 CornerRadius="25"
                 WidthRequest="200">
-                <!-- Optional: Add a gradient background -->
+                <!-- added a gradient background to the button-->
                 <Button.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="#007BFF" Offset="0.1" />

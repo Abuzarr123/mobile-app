@@ -15,7 +15,7 @@ namespace assignment_2425
         private async void OnSignUpClicked()
         {
             // Navigate to the LoginPage
-            await Shell.Current.GoToAsync("//LoginPage");
+            await Shell.Current.Navigation.PushAsync(new LoginPage());
         }
     }
 }

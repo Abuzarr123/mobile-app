@@ -1,90 +1,53 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Shell.FlyoutBehavior="Disabled"
-             x:Class="assignment_2425.LoginPage">
+             x:Class="assignment_2425.LoginPage"
+             Title="Login Page">
 
-    <ScrollView Orientation="Vertical">
-        <!-- Ensure scrolling is vertical -->
-        <Grid RowDefinitions="Auto, *, Auto"
-              ColumnDefinitions="*, *"
-              VerticalOptions="FillAndExpand"
-              HorizontalOptions="FillAndExpand"
-              Padding="20">
+    <ScrollView>
+        <VerticalStackLayout Padding="10,0,10,0" Spacing="15">
 
-            <!-- Grid for Back Button and Title -->
-            <Grid RowDefinitions="Auto"
-                  ColumnDefinitions="Auto, *"
-                  Grid.Row="0"
-                  Grid.ColumnSpan="2"
-                  VerticalOptions="Start"
-                  HorizontalOptions="FillAndExpand">
+            <!-- Email Input -->
+            <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" />
 
-                <!-- Back Button (Left-Aligned) -->
-                <ImageButton Source="back_arrow_icon.svg"
-                             Clicked="OnBackClicked"
-                             BackgroundColor="Transparent"
-                             WidthRequest="40"
-                             HeightRequest="40"
-                             HorizontalOptions="Start"
-                             VerticalOptions="Center"
-                             Margin="0,10,0,0"/>
+            <!-- Password Input -->
+            <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
 
-                <!-- Page Title (Centered) -->
-                <Label Text="Login Page"
-                       FontSize="22"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"
-                       Grid.Column="1" />
-            </Grid>
+            <!-- Login Button -->
+            <Button Text="Log In" Clicked="OnLoginClicked" 
+                    Padding="30,15"
+                    BackgroundColor="#007BFF"
+                    TextColor="White"
+                    FontSize="18"
+                    FontAttributes="Bold" 
+                    CornerRadius="25"
+                    WidthRequest="200">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#007BFF" Offset="0.1" />
+                        <GradientStop Color="#00BFFF" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
 
-            <!-- Login Form -->
-            <VerticalStackLayout Grid.Row="1"
-                                 Grid.ColumnSpan="2"
-                                 VerticalOptions="Center"
-                                 HorizontalOptions="Fill"
-                                 Spacing="15"
-                                 Padding="20">
+            <!-- Sign Up Button -->
+            <Button Text="Sign Up" Clicked="OnSignUpClicked" 
+                    Padding="30,15"
+                    BackgroundColor="#007BFF"
+                    TextColor="White"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    CornerRadius="25"
+                    WidthRequest="200">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#007BFF" Offset="0.1" />
+                        <GradientStop Color="#00BFFF" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
 
-                <!-- Email Input -->
-                <Entry x:Name="EmailEntry"
-                       Placeholder="Email"
-                       Keyboard="Email"
-                       HorizontalOptions="FillAndExpand"
-                       HeightRequest="50"/>
-
-                <!-- Password Input -->
-                <Entry x:Name="PasswordEntry"
-                       Placeholder="Password"
-                       IsPassword="True"
-                       HorizontalOptions="FillAndExpand"
-                       HeightRequest="50"/>
-
-                <!-- Login Button -->
-                <Button Text="Log In"
-                        Clicked="OnLoginClicked"
-                        BackgroundColor="#007BFF"
-                        TextColor="White"
-                        FontSize="18"
-                        FontAttributes="Bold"
-                        CornerRadius="25"
-                        WidthRequest="200"
-                        HorizontalOptions="Center"
-                        Padding="10"/>
-
-                <!-- Sign Up Button -->
-                <Button Text="Sign Up"
-                        Clicked="OnSignUpClicked"
-                        BackgroundColor="#007BFF"
-                        TextColor="White"
-                        FontSize="18"
-                        FontAttributes="Bold"
-                        CornerRadius="25"
-                        WidthRequest="200"
-                        HorizontalOptions="Center"
-                        Padding="10"/>
-            </VerticalStackLayout>
-
-        </Grid>
+            <!-- Error Message -->
+            <Label x:Name="ErrorMessageLabel" TextColor="Red" IsVisible="False" />
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

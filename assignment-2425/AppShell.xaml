@@ -5,24 +5,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:assignment_2425"
     Shell.FlyoutBehavior="Disabled"
-    Shell.NavBarIsVisible="False"
+    Shell.BackgroundColor="Blue"
+    Shell.TitleColor="White"
+    Shell.NavBarIsVisible="True"
     Title="assignment_2425">
+
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="MainPage"
+        Shell.NavBarIsVisible="True"/>
+
 
     <ShellContent
         Title="Login"
         ContentTemplate="{DataTemplate local:LoginPage}"
-        Route="LoginPage" />
+        Route="LoginPage"/>
 
     <ShellContent
-              ContentTemplate="{DataTemplate local:NutritionPage}"
-              Route="NutritionPage" />
+        ContentTemplate="{DataTemplate local:NutritionPage}"
+        Route="NutritionPage"/>
 
-
-
+    <ShellContent
+        Title="Profile"
+        ContentTemplate="{DataTemplate local:ProfilePage}"
+        Route="ProfilePage"/>
 
 </Shell>
