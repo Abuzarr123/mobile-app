@@ -1,4 +1,5 @@
 ﻿using Firebase.Auth;
+using Microsoft.Maui.Media; // Import Text-to-Speech
 using Microsoft.Maui.Storage; // Required for Secure Storage
 using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
@@ -52,21 +53,23 @@ namespace assignment_2425
         }
         private async void OnSaveCaloriesClicked(object sender, EventArgs e)
         {
-            string currentDate = DateTime.Now.ToString("dd/MM/yyyy");
-
-            // Retrieve existing data
-            string existingData = await SecureStorage.GetAsync("calorie_log");
-            string newData = $"{currentDate},{totalCalories};";
-
-            if (!string.IsNullOrEmpty(existingData))
+            string userId = await SecureStorage.GetAsync("firebase_uid"); // Retrieve logged-in user UID
+            if (string.IsNullOrEmpty(userId))
             {
-                newData = existingData + newData; // Append new entry
+                await DisplayAlert("Error", "User ID not found. Please log in again.", "OK");
+                return;
             }
 
-            await SecureStorage.SetAsync("calorie_log", newData);
+            FirestoreService firestoreService = new FirestoreService();
+            await firestoreService.SaveCalorieData(userId, totalCalories);
 
-            await DisplayAlert("Success", "Navigate to your profile to see your calories for the day!", "OK");
+            string message = $"You have consumed {totalCalories} calories today.";
+            await TextToSpeech.Default.SpeakAsync(message); // Text-to-Speech
+
+            await DisplayAlert("Success", "Your daily calories have been saved to your profile!", "OK");
         }
+
+
 
 
 
@@ -90,7 +93,7 @@ namespace assignment_2425
 
             if (action == "View Profile")
             {
-                await Navigation.PushAsync(new ProfilePage()); // Navigate to Profile Page (Placeholder)
+                await Navigation.PushAsync(new ProfilePage()); // Navigate to Profile Page 
             }
             else if (action == "Log Out")
             {
@@ -100,15 +103,17 @@ namespace assignment_2425
                 {
                     try
                     {
-                        // 🔹 Remove Firebase Token (Ensures the user is logged out)
+                        // Remove Firebase Token (Ensures the user is logged out)
                         SecureStorage.Remove("firebase_token");
 
-                        // 🔹 Reset Navigation Stack to Keep Only `MainPage` and `LoginPage`
-                        await Shell.Current.GoToAsync("//MainPage");  // Navigate to MainPage
-                        //await Task.Delay(100); // Ensure the navigation transition is smooth
-                        //await Shell.Current.GoToAsync("LoginPage"); // Navigate to LoginPage while keeping MainPage in stack
+                        // Remove stored user ID
+                        SecureStorage.Remove("firebase_uid");
 
-                        // 🔹 Ensure the back button is visible on LoginPage
+                        // Reset Navigation Stack to Keep Only `MainPage` and `LoginPage`
+                        await Shell.Current.GoToAsync("//MainPage");
+                        await Task.Delay(100); // Ensure the navigation transition is smooth
+
+                        // Ensure the back button is visible on LoginPage
                         Shell.SetNavBarIsVisible(Shell.Current.CurrentPage, true);
                         NavigationPage.SetHasBackButton(Shell.Current.CurrentPage, true);
                     }
@@ -119,6 +124,7 @@ namespace assignment_2425
                 }
             }
         }
+
 
     }
 

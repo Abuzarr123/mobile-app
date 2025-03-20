@@ -1,17 +1,25 @@
-using Microsoft.Maui.Controls;
+﻿using Google.Cloud.Firestore;
 using Microsoft.Maui.Storage;
+using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 
 namespace assignment_2425
 {
     public partial class ProfilePage : ContentPage
     {
         public ObservableCollection<CalorieRecord> CalorieRecords { get; set; }
+        private FirestoreService firestoreService;
 
         public ProfilePage()
         {
             InitializeComponent();
+            this.BindingContext = this; // Ensure data binding works
+
+            firestoreService = new FirestoreService();
             CalorieRecords = new ObservableCollection<CalorieRecord>();
 
             LoadCalorieData();
@@ -20,39 +28,31 @@ namespace assignment_2425
 
         private async void LoadCalorieData()
         {
-            var storedData = await SecureStorage.GetAsync("calorie_log");
+            string userId = await SecureStorage.GetAsync("firebase_uid"); // Retrieve user ID
 
-            if (!string.IsNullOrEmpty(storedData))
+            if (string.IsNullOrEmpty(userId))
             {
-                CalorieRecords.Clear();
+                await DisplayAlert("Error", "User ID not found. Please log in again.", "OK");
 
-                string[] entries = storedData.Split(';');
+                // Send user back to LoginPage if UID is missing
+                await Shell.Current.GoToAsync("//LoginPage");
+                return;
+            }
 
-                foreach (var entry in entries)
-                {
-                    string[] parts = entry.Split(',');
-                    if (parts.Length == 2 && int.TryParse(parts[1], out int calories))
-                    {
-                        var calorieRecord = new CalorieRecord
-                        {
-                            Date = parts[0],
-                            Calories = calories.ToString() + " kcal"
-                        };
-                        CalorieRecords.Add(calorieRecord);
-                    }
-                }
+            List<CalorieRecord> fetchedData = await firestoreService.GetCalorieData(userId);
+
+            CalorieRecords.Clear();
+            foreach (var record in fetchedData)
+            {
+                CalorieRecords.Add(record);
             }
         }
+
     }
 
     public class CalorieRecord
     {
         public string Date { get; set; }
-
-        // Ensuring "kcal" is always included correctly
-        public string CaloriesFormatted => Calories + " kcal";
-
-        public string Calories {  get; set; }
+        public string Calories { get; set; }
     }
-
 }

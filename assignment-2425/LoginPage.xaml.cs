@@ -23,14 +23,13 @@ namespace assignment_2425
 
         }
 
-       /* private async void OnBackClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("//MainPage", true);
-        }*/
+        /* private async void OnBackClicked(object sender, EventArgs e)
+         {
+             await Shell.Current.GoToAsync("//MainPage", true);
+         }*/
 
         private async void OnLoginClicked(object sender, EventArgs e)
         {
-            // Haptic Feedback for Button Click
             HapticFeedback.Perform(HapticFeedbackType.Click);
 
             string email = EmailEntry.Text?.Trim();
@@ -39,32 +38,35 @@ namespace assignment_2425
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
             {
                 await DisplayAlert("Login Error", "Please enter both email and password.", "OK");
-                TriggerWarningHaptic(); // Warning feedback
                 return;
             }
 
             try
             {
+                // Sign in with Firebase
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(email, password);
 
-                // Success Haptic Feedback
-                TriggerSuccessHaptic();
+                // Get User ID from Firebase
+                string userId = auth.User.LocalId;
 
+                // Store User ID in SecureStorage
+                await SecureStorage.SetAsync("firebase_uid", userId);
+
+                await DisplayAlert("Success", "You are now logged in!", "OK");
+
+                // Navigate to the main app page after successful login
                 await Shell.Current.GoToAsync("//NutritionPage");
-
-                
             }
             catch (FirebaseAuthException ex)
             {
-                TriggerWarningHaptic(); // Warning feedback
                 await DisplayAlert("Login Failed", "Error: " + ex.Message, "OK");
             }
             catch (Exception ex)
             {
-                TriggerWarningHaptic(); // Warning feedback
                 await DisplayAlert("Login Failed", "An unexpected error occurred: " + ex.Message, "OK");
             }
         }
+
 
         private async void OnSignUpClicked(object sender, EventArgs e)
         {

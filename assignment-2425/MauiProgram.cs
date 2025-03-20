@@ -1,7 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Controls.Hosting;
-using Microsoft.Maui.Controls.PlatformConfiguration;
-using Microsoft.Maui.Hosting;
+﻿using System.IO;
+using Microsoft.Maui.Storage;
 
 namespace assignment_2425
 {
@@ -15,15 +13,33 @@ namespace assignment_2425
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-#if DEBUG
-            builder.Logging.AddDebug();
-#endif
 
-
+            CopyFirebaseCredentials(); // Copy Firestore Credentials on App Start
 
             return builder.Build();
         }
+
+        private static void CopyFirebaseCredentials()
+        {
+            string sourceFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "Raw", "firebase_credentials.json");
+            string destinationFile = Path.Combine(FileSystem.AppDataDirectory, "firebase_credentials.json");
+
+            if (!File.Exists(destinationFile))
+            {
+                try
+                {
+                    using Stream fileStream = FileSystem.OpenAppPackageFileAsync("firebase_credentials.json").Result;
+                    using FileStream destStream = File.Create(destinationFile);
+                    fileStream.CopyTo(destStream);
+                    Console.WriteLine("Firebase credentials copied successfully.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error copying Firebase credentials: {ex.Message}");
+                }
+            }
+        }
+
     }
 }
