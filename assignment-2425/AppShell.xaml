@@ -8,28 +8,40 @@
     Shell.BackgroundColor="Blue"
     Shell.TitleColor="White"
     Shell.NavBarIsVisible="True"
+    Shell.TabBarBackgroundColor="White"
+    Shell.TabBarUnselectedColor="Black"
+    Shell.TabBarForegroundColor="Black"
     Title="assignment_2425">
+    
+    
+    
+    <ShellItem Route="MainPage">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage"
+            Shell.NavBarIsVisible="True"/>
+    </ShellItem>
+    <ShellItem Route="LoginPage">
+        <ShellContent
+            Title="Login"
+            ContentTemplate="{DataTemplate local:LoginPage}"
+            Route="LoginPage"/>
+    </ShellItem>
+  
+    <TabBar Route="AppTabs">
+        <Tab Title="Calories" Icon="calories_icon.svg">
+            <ShellContent
+                Title="Calories"
+                ContentTemplate="{DataTemplate local:NutritionPage}"
+                Route="NutritionPage" />
+        </Tab>
+        <Tab Title="Profile" Icon="profile_icon.svg">
+            <ShellContent
+                Title="Profile"
+                ContentTemplate="{DataTemplate local:ProfilePage}"
+                Route="ProfilePage" />
+        </Tab>
 
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage"
-        Shell.NavBarIsVisible="True"/>
-
-
-    <ShellContent
-        Title="Login"
-        ContentTemplate="{DataTemplate local:LoginPage}"
-        Route="LoginPage"/>
-
-    <ShellContent
-        ContentTemplate="{DataTemplate local:NutritionPage}"
-        Route="NutritionPage"/>
-
-    <ShellContent
-        Title="Profile"
-        ContentTemplate="{DataTemplate local:ProfilePage}"
-        Route="ProfilePage"/>
-
+    </TabBar>
 </Shell>

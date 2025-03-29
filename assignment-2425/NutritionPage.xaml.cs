@@ -1,5 +1,4 @@
 ﻿using Firebase.Auth;
-using Microsoft.Maui.Media; // Import Text-to-Speech
 using Microsoft.Maui.Storage; // Required for Secure Storage
 using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
@@ -103,13 +102,11 @@ namespace assignment_2425
                 {
                     try
                     {
-                        // Remove Firebase Token (Ensures the user is logged out)
                         SecureStorage.Remove("firebase_token");
 
                         // Remove stored user ID
                         SecureStorage.Remove("firebase_uid");
 
-                        // Reset Navigation Stack to Keep Only `MainPage` and `LoginPage`
                         await Shell.Current.GoToAsync("//MainPage");
                         await Task.Delay(100); // Ensure the navigation transition is smooth
 

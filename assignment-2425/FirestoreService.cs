@@ -72,7 +72,7 @@ namespace assignment_2425
                         string date = data["date"].ToString();
                         int calories = Convert.ToInt32(data["calories"]);
 
-                        Console.WriteLine($" {date} {calories} kcal"); // Debugging
+                        Console.WriteLine($" {date} {calories} kcal"); // Debugging to see that the date and calories are being picked up correctly
 
                         calorieList.Add(new CalorieRecord
                         {

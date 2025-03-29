@@ -23,10 +23,6 @@ namespace assignment_2425
 
         }
 
-        /* private async void OnBackClicked(object sender, EventArgs e)
-         {
-             await Shell.Current.GoToAsync("//MainPage", true);
-         }*/
 
         private async void OnLoginClicked(object sender, EventArgs e)
         {
@@ -79,14 +75,14 @@ namespace assignment_2425
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
             {
                 await DisplayAlert("Sign Up Error", "Please enter both email and password.", "OK");
-                TriggerWarningHaptic(); // Warning feedback
+                TriggerWarningHaptic(); // haptic feedback triggered
                 return;
             }
 
             if (password.Length < 6)
             {
                 await DisplayAlert("Sign Up Error", "Password must be at least 6 characters long.", "OK");
-                TriggerWarningHaptic(); // Warning feedback
+                TriggerWarningHaptic(); // haptic feedback triggedered
                 return;
             }
 
@@ -101,12 +97,12 @@ namespace assignment_2425
             }
             catch (FirebaseAuthException ex)
             {
-                TriggerWarningHaptic(); // Warning feedback
+                TriggerWarningHaptic(); // haptic feedback
                 await DisplayAlert("Sign Up Failed", "Error: " + ex.Message, "OK");
             }
             catch (Exception ex)
             {
-                TriggerWarningHaptic(); // Warning feedback
+                TriggerWarningHaptic(); // haptic feedback
                 await DisplayAlert("Sign Up Failed", "An unexpected error occurred: " + ex.Message, "OK");
             }
         }
