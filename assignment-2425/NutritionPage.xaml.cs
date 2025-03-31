@@ -88,13 +88,9 @@ namespace assignment_2425
         // adding 3 dots menu onto the calorie tracking page 
         private async void OnMenuClicked(object sender, EventArgs e)
         {
-            string action = await DisplayActionSheet("Options", "Cancel", null, "View Profile", "Log Out");
+            string action = await DisplayActionSheet("Options", "Cancel", null, "Log Out");
 
-            if (action == "View Profile")
-            {
-                await Navigation.PushAsync(new ProfilePage()); // Navigate to Profile Page 
-            }
-            else if (action == "Log Out")
+             if (action == "Log Out")
             {
                 bool confirm = await DisplayAlert("Log Out", "Are you sure you want to log out?", "Yes", "No");
 
