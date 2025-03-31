@@ -24,7 +24,7 @@
 
             <Button Text="Add Calories"
                     Clicked="OnAddCaloriesClicked"
-                    BackgroundColor="#007BFF"
+                    BackgroundColor="#00549E"
                     TextColor="White"
                     CornerRadius="25"
                     WidthRequest="200"/>
@@ -32,7 +32,7 @@
 
             <Button Text="Save to Profile"
                     Clicked="OnSaveCaloriesClicked"
-                    BackgroundColor="#28A745"
+                    BackgroundColor="#00549E"
                     TextColor="White"
                     CornerRadius="25"
                     WidthRequest="200"/>

@@ -7,7 +7,7 @@
     <ScrollView>
         <VerticalStackLayout VerticalOptions="Center" Padding="30" Spacing="25">
 
-            <!-- Page Heading -->
+            
             <Label Text="Welcome Back!"
                    FontSize="26"
                    FontAttributes="Bold"
