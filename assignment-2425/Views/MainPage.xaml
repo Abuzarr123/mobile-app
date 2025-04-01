@@ -17,7 +17,7 @@
             <!-- Message to the user with info about the app -->
             <Label
                 Text="Hello, welcome to your personal calorie app. This app will help you track your calorie intake that you are having on a daily basis!"
-                FontSize="18"
+                FontSize="{DynamicResource AppFontSize}"
                 TextColor="Black"
                 HorizontalTextAlignment="Center"
                 SemanticProperties.HeadingLevel="Level1" />
@@ -31,7 +31,7 @@
                 Padding="30,15"
                 BackgroundColor="#00549E"
                 TextColor="White"
-                FontSize="18"
+                FontSize="{DynamicResource AppFontSize}"
                 FontAttributes="Bold"
                 CornerRadius="25"
                 WidthRequest="200">

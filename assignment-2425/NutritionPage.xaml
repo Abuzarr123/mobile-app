@@ -26,7 +26,7 @@
                     Clicked="OnAddCaloriesClicked"
                     BackgroundColor="#00549E"
                     TextColor="White"
-                    FontSize="18"
+                    FontSize="{DynamicResource AppFontSize}"
                     CornerRadius="25"
                     WidthRequest="200"/>
 
@@ -35,7 +35,7 @@
                     Clicked="OnSaveCaloriesClicked"
                     BackgroundColor="#00549E"
                     TextColor="White"
-                    FontSize="18"
+                    FontSize="{DynamicResource AppFontSize}"
                     CornerRadius="25"
                     WidthRequest="200"/>
 
@@ -43,10 +43,10 @@
 
             <!-- Display Logged Calories that user has inputted  -->
             <Label Text="Today's Total Calories:"
-                   FontSize="18"
+                   FontSize="{DynamicResource AppFontSize}"
                    FontAttributes="Bold"/>
             <Label x:Name="TotalCaloriesLabel"
-                   FontSize="20"
+                   FontSize="{DynamicResource AppFontSize}"
                    TextColor="Black"/>
 
             <!-- Display List of Logged Food Items -->

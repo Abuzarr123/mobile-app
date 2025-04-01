@@ -1,12 +1,31 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:assignment_2425"
              x:Class="assignment_2425.Settingspage"
-             Title="Settingspage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Settings">
+
+    <ContentPage.BindingContext>
+        <local:SettingsViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Label Text="Font Size Settings"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <Picker Title="Choose Font Size"
+                    ItemsSource="{Binding FontSizeOptions}"
+                    SelectedItem="{Binding SelectedFontSize}"
+                    HorizontalOptions="FillAndExpand" />
+
+            <Label Text="This is a preview of your font size."
+                   FontSize="{Binding FontSizeValue}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
