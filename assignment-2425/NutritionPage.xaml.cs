@@ -62,8 +62,13 @@ namespace assignment_2425
             FirestoreService firestoreService = new FirestoreService();
             await firestoreService.SaveCalorieData(userId, totalCalories);
 
-            string message = $"You have consumed {totalCalories} calories today.";
-            await TextToSpeech.Default.SpeakAsync(message); // Text-to-Speech
+            bool isTtsEnabled = Preferences.Get("TTS_Enabled", true);
+
+            if (isTtsEnabled)
+            {
+                await TextToSpeech.Default.SpeakAsync($"You have consumed {totalCalories} calories today.");
+            }
+            //await TextToSpeech.Default.SpeakAsync(message); // Text-to-Speech
 
             await DisplayAlert("Success", "Your daily calories have been saved to your profile!", "OK");
         }
@@ -89,7 +94,6 @@ namespace assignment_2425
         private async void OnMenuClicked(object sender, EventArgs e)
         {
             string action = await DisplayActionSheet("Options", "Cancel", null, "Log Out");
-
              if (action == "Log Out")
             {
                 bool confirm = await DisplayAlert("Log Out", "Are you sure you want to log out?", "Yes", "No");
@@ -98,6 +102,7 @@ namespace assignment_2425
                 {
                     try
                     {
+                        MessagingCenter.Send(this, "ClearProfileData");
                         SecureStorage.Remove("firebase_token");
 
                         // Remove stored user ID

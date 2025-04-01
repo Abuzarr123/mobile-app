@@ -23,7 +23,7 @@ namespace assignment_2425
                 }
 
                 Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", credentialsPath);
-                db = FirestoreDb.Create("nutritiontrackerapp-adabf"); // Replace with your Firestore Project ID
+                db = FirestoreDb.Create("nutritiontrackerapp-adabf"); //firestore application id
             }
             catch (Exception ex)
             {

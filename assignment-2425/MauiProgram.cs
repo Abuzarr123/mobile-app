@@ -20,7 +20,7 @@ namespace assignment_2425
             return builder.Build();
         }
 
-        private static void CopyFirebaseCredentials()
+        private static void CopyFirebaseCredentials()// firebasecredentials.json file being added
         {
             string sourceFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "Raw", "firebase_credentials.json");
             string destinationFile = Path.Combine(FileSystem.AppDataDirectory, "firebase_credentials.json");

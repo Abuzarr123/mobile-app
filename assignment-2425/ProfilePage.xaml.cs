@@ -22,31 +22,41 @@ namespace assignment_2425
             firestoreService = new FirestoreService();
             CalorieRecords = new ObservableCollection<CalorieRecord>();
 
-            LoadCalorieData();
+            //LoadCalorieData();
             CalorieLogCollectionView.ItemsSource = CalorieRecords;
+                MessagingCenter.Subscribe<NutritionPage>(this, "ClearProfileData", sender =>
+                {
+                    CalorieRecords.Clear();
+                });
         }
 
-        private async void LoadCalorieData()
+        private async Task LoadCalorieData()
         {
-            string userId = await SecureStorage.GetAsync("firebase_uid"); // Retrieve user ID
+            string userId = await SecureStorage.GetAsync("firebase_uid");
 
             if (string.IsNullOrEmpty(userId))
             {
                 await DisplayAlert("Error", "User ID not found. Please log in again.", "OK");
-
-                // Send user back to LoginPage if UID is missing
                 await Shell.Current.GoToAsync("//LoginPage");
                 return;
             }
 
-            List<CalorieRecord> fetchedData = await firestoreService.GetCalorieData(userId);
+            var fetchedData = await firestoreService.GetCalorieData(userId);
 
             CalorieRecords.Clear();
+
             foreach (var record in fetchedData)
             {
                 CalorieRecords.Add(record);
             }
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await LoadCalorieData(); //Refreshes each time the tab for profile is clicked
+        }
+
 
     }
 

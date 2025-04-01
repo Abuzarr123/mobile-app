@@ -6,7 +6,7 @@
         {
             InitializeComponent();
 
-            double savedFontSize = Preferences.Get("AppFontSize", 14);
+            double savedFontSize = Preferences.Get("AppFontSize", 14); // save the appfont size to be 14 
             Application.Current.Resources["AppFontSize"] = savedFontSize;
 
             MainPage = new AppShell();
