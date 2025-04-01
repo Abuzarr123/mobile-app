@@ -26,6 +26,14 @@
                    HorizontalOptions="Center"
                    VerticalOptions="CenterAndExpand" />
 
+            <Label Text="Enable/disable text to speech"
+                   FontSize="{Binding FontSizeValue}"
+                   HorizontalOptions="Center" />
+
+            <Switch IsToggled="{Binding IsTextToSpeechEnabled}">
+                
+            </Switch>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

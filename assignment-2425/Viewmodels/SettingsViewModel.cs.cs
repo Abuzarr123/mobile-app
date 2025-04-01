@@ -6,9 +6,10 @@ namespace assignment_2425
 {
     public class SettingsViewModel : INotifyPropertyChanged
     {
+
         public ObservableCollection<string> FontSizeOptions { get; } = new ObservableCollection<string>
         {
-            "Small", "Medium", "Large", "Extra Large"
+            "Small", "Medium", "Large", "Extra Large" //sets the names of the different font types 
         };
 
         private string selectedFontSize;
@@ -40,7 +41,7 @@ namespace assignment_2425
             }
         }
 
-        private void UpdateFontSizeValue()
+        private void UpdateFontSizeValue() 
         {
             FontSizeValue = SelectedFontSize switch
             {
@@ -48,13 +49,32 @@ namespace assignment_2425
                 "Medium" => 14,
                 "Large" => 18,
                 "Extra Large" => 22,
-                _ => 14
+                _ => 14 // sets a range of values based on different font sizes and base font being 14
             };
             Application.Current.Resources["AppFontSize"] = FontSizeValue;
 
         }
+        private bool isTextToSpeechEnabled;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public bool IsTextToSpeechEnabled
+        {
+            get => isTextToSpeechEnabled;
+            set
+            {
+                if (isTextToSpeechEnabled != value)
+                {
+                    isTextToSpeechEnabled = value;
+                    Preferences.Set("TTS_Enabled", value); //TTS
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public SettingsViewModel()
+        {
+            IsTextToSpeechEnabled = Preferences.Get("TTS_Enabled", true);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;   
         void OnPropertyChanged([CallerMemberName] string name = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
