@@ -42,6 +42,12 @@
                 ContentTemplate="{DataTemplate local:ProfilePage}"
                 Route="ProfilePage" />
         </Tab>
+        <Tab Title="Settings" Icon="settings_icon.svg">
+            <ShellContent
+                Title="Settings"
+                ContentTemplate="{DataTemplate local:Settingspage}"
+                Route="Settingspage" />
+        </Tab>
 
     </TabBar>
 </Shell>
