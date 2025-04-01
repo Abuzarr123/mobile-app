@@ -68,7 +68,7 @@
                     Clicked="OnResetCaloriesClicked"
                     BackgroundColor="Red"
                     TextColor="White"
-                    FontSize="18"
+                    FontSize="{DynamicResource AppFontSize}"
                     CornerRadius="25"
                     WidthRequest="200"/>
 
