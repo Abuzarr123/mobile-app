@@ -93,7 +93,8 @@ namespace assignment_2425
                 // Success Haptic Feedback
                 TriggerSuccessHaptic();
 
-                await Navigation.PushAsync(new NutritionPage());
+                //await Navigation.PushAsync(new NutritionPage());
+                await DisplayAlert("Sign up successfull", "you have sucessfully signed up", "OK");
             }
             catch (FirebaseAuthException ex)
             {
