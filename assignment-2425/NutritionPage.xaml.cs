@@ -28,7 +28,7 @@ namespace assignment_2425
                 await MainThread.InvokeOnMainThreadAsync(async () =>
                 {
                     await DisplayAlert("Scanned Barcode", $"Barcode: {m.Value}", "OK");
-                    // Here: Optionally call an API to get food name + calories using m.Value
+                    
                 });
             });
 
@@ -36,25 +36,27 @@ namespace assignment_2425
 
         private void OnAddCaloriesClicked(object sender, EventArgs e)
         {
-            if (int.TryParse(CalorieEntry.Text, out int calories))
+            string foodName = FoodNameEntry.Text;
+            if (string.IsNullOrWhiteSpace(foodName))
             {
-                if (calories > 0)
-                {
-                    FoodLog.Add(new FoodItem { Name = "Manual Entry", Calories = calories });
-                    totalCalories += calories;
-                    UpdateTotalCalories();
-                    CalorieEntry.Text = "";
-                }
-                else
-                {
-                    DisplayAlert("Error", "Calories must be greater than zero.", "OK");
-                }
+                DisplayAlert("Error", "Please enter a food name.", "OK");
+                return;
+            }
+
+            if (int.TryParse(CalorieEntry.Text, out int calories) && calories > 0)
+            {
+                FoodLog.Add(new FoodItem { Name = foodName, Calories = calories });
+                totalCalories += calories;
+                UpdateTotalCalories();
+                CalorieEntry.Text = "";
+                FoodNameEntry.Text = "";
             }
             else
             {
-                DisplayAlert("Error", "Please enter a valid calorie amount.", "OK");
+                DisplayAlert("Error", "Enter a valid calorie amount.", "OK");
             }
         }
+
 
         private void UpdateTotalCalories()
         {
@@ -62,26 +64,33 @@ namespace assignment_2425
         }
         private async void OnSaveCaloriesClicked(object sender, EventArgs e)
         {
-            string userId = await SecureStorage.GetAsync("firebase_uid"); // Retrieve logged-in user UID
+            if (FoodLog.Count == 0)
+            {
+                await DisplayAlert("Error", "No food items to save.", "OK");
+                return;
+            }
+
+            var lastItem = FoodLog.Last();
+            string userId = await SecureStorage.GetAsync("firebase_uid");
+
             if (string.IsNullOrEmpty(userId))
             {
                 await DisplayAlert("Error", "User ID not found. Please log in again.", "OK");
                 return;
             }
 
-            FirestoreService firestoreService = new FirestoreService();
-            await firestoreService.SaveCalorieData(userId, totalCalories);
+            var firestoreService = new FirestoreService();
+            await firestoreService.SaveCalorieData(userId, lastItem.Calories, lastItem.Name);
 
             bool isTtsEnabled = Preferences.Get("TTS_Enabled", true);
-
             if (isTtsEnabled)
             {
                 await TextToSpeech.Default.SpeakAsync($"You have consumed {totalCalories} calories today.");
             }
-            //await TextToSpeech.Default.SpeakAsync(message); // Text-to-Speech
 
-            await DisplayAlert("Success", "Your daily calories have been saved to your profile!", "OK");
+            await DisplayAlert("Success", "Your entry has been saved to your profile!", "OK");
         }
+
 
 
 

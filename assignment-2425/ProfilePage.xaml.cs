@@ -64,5 +64,6 @@ namespace assignment_2425
     {
         public string Date { get; set; }
         public string Calories { get; set; }
+        public string FoodName { get; set; }
     }
 }

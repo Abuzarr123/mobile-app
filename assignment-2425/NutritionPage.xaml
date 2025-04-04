@@ -17,6 +17,10 @@
             <Label Text="Daily Nutrition Intake" FontSize="22" FontAttributes="Bold" />
 
             <!-- User can input their calories -->
+            <Entry x:Name="FoodNameEntry"
+                   Placeholder="Enter food name"
+                   HorizontalOptions="FillAndExpand" />
+            
             <Entry x:Name="CalorieEntry"
                    Placeholder="Enter calories"
                    Keyboard="Numeric"

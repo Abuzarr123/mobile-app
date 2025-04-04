@@ -18,8 +18,10 @@
                     <DataTemplate>
                         <Frame Padding="10" Margin="5" BorderColor="Gray">
                             <VerticalStackLayout>
-                                <Label Text="{Binding Date}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="{Binding Calories}" FontSize="16" TextColor="Black"/>
+                                <Label Text="{Binding Date}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Calories}" FontSize="{DynamicResource AppFontSize}" TextColor="Black"/>
+                                <Label Text="{Binding FoodName}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold"/>
+
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
