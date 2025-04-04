@@ -72,6 +72,15 @@
                     CornerRadius="25"
                     WidthRequest="200"/>
 
+            <Button Text="Scan Barcode"
+                    Clicked="OnScanBarcodeClicked"
+                    BackgroundColor="#00549E"
+                    TextColor="White"
+                    FontSize="{DynamicResource AppFontSize}"
+                    CornerRadius="25"
+                    WidthRequest="200"/>
+
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

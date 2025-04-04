@@ -16,6 +16,8 @@ namespace assignment_2425
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
+                
+
 
             CopyFirebaseCredentials(); // Copy Firestore Credentials on App Start
 

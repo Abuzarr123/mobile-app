@@ -2,6 +2,7 @@
 using Microsoft.Maui.Storage; // Required for Secure Storage
 using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace assignment_2425
 {
@@ -21,6 +22,15 @@ namespace assignment_2425
             authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBVnVmjhhb3tdb8XaIT_31IsEwYjQjN980"));
             
             NavigationPage.SetHasBackButton(this, false);
+
+            WeakReferenceMessenger.Default.Register<BarcodeScannedMessage>(this, async (r, m) =>
+            {
+                await MainThread.InvokeOnMainThreadAsync(async () =>
+                {
+                    await DisplayAlert("Scanned Barcode", $"Barcode: {m.Value}", "OK");
+                    // Here: Optionally call an API to get food name + calories using m.Value
+                });
+            });
 
         }
 
@@ -122,6 +132,11 @@ namespace assignment_2425
                 }
             }
         }
+        private async void OnScanBarcodeClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new BarcodeScanning());
+        }
+
 
 
     }
