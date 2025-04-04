@@ -3,6 +3,7 @@ using Microsoft.Maui.Storage; // Required for Secure Storage
 using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Messaging;
+using static assignment_2425.BarcodeScanning;
 
 namespace assignment_2425
 {
@@ -23,14 +24,20 @@ namespace assignment_2425
             
             NavigationPage.SetHasBackButton(this, false);
 
-            WeakReferenceMessenger.Default.Register<BarcodeScannedMessage>(this, async (r, m) =>
+            WeakReferenceMessenger.Default.Register<FoodScannedMessage>(this, (r, msg) =>
             {
-                await MainThread.InvokeOnMainThreadAsync(async () =>
+                MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    await DisplayAlert("Scanned Barcode", $"Barcode: {m.Value}", "OK");
-                    
+                    FoodNameEntry.Text = msg.FoodName;
+                    CalorieEntry.Text = msg.Calories.ToString();
+                    ProteinEntry.Text = msg.Protein.ToString();
+                    CarbsEntry.Text = msg.Carbohydrates.ToString();
+                    FatsEntry.Text = msg.Fats.ToString();
+
+                    DisplayAlert("Scanned", $"Added {msg.FoodName}", "OK");
                 });
             });
+
 
         }
 

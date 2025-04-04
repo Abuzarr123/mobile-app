@@ -19,9 +19,9 @@
                         <Frame Padding="10" Margin="5" BorderColor="Gray">
                             <VerticalStackLayout>
                                 <Label Text="{Binding Date}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold"/>
-                                <Label Text="{Binding Calories}" FontSize="{DynamicResource AppFontSize}" TextColor="Black"/>
+                                <Label Text="{Binding Calories}" FontSize="{DynamicResource AppFontSize}" TextColor="Black" FontAttributes="Bold"/>
                                 <Label Text="{Binding FoodName}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold"/>
-                                <Label Text="{Binding Macronutrients}" FontSize="{DynamicResource AppFontSize}" TextColor="Black" />
+                                <Label Text="{Binding Macronutrients}" FontSize="{DynamicResource AppFontSize}" TextColor="Black" FontAttributes="Bold" />
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
