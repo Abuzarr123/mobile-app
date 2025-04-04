@@ -43,19 +43,38 @@ namespace assignment_2425
                 return;
             }
 
-            if (int.TryParse(CalorieEntry.Text, out int calories) && calories > 0)
+            bool isValidCalories = int.TryParse(CalorieEntry.Text, out int calories);
+            bool isValidProtein = int.TryParse(ProteinEntry.Text, out int protein);
+            bool isValidCarbs = int.TryParse(CarbsEntry.Text, out int carbs);
+            bool isValidFats = int.TryParse(FatsEntry.Text, out int fats);
+
+            if (isValidCalories && calories > 0 && isValidProtein && isValidCarbs && isValidFats)
             {
-                FoodLog.Add(new FoodItem { Name = foodName, Calories = calories });
+                FoodLog.Add(new FoodItem
+                {
+                    Name = foodName,
+                    Calories = calories,
+                    Protein = protein,
+                    Carbohydrates = carbs,
+                    Fats = fats
+                });
+
                 totalCalories += calories;
                 UpdateTotalCalories();
-                CalorieEntry.Text = "";
+
+                // Clear input fields
                 FoodNameEntry.Text = "";
+                CalorieEntry.Text = "";
+                ProteinEntry.Text = "";
+                CarbsEntry.Text = "";
+                FatsEntry.Text = "";
             }
             else
             {
-                DisplayAlert("Error", "Enter a valid calorie amount.", "OK");
+                DisplayAlert("Error", "Please enter valid numbers for all fields.", "OK");
             }
         }
+
 
 
         private void UpdateTotalCalories()
@@ -80,7 +99,7 @@ namespace assignment_2425
             }
 
             var firestoreService = new FirestoreService();
-            await firestoreService.SaveCalorieData(userId, lastItem.Calories, lastItem.Name);
+            await firestoreService.SaveCalorieData(userId, lastItem.Calories, lastItem.Name, lastItem.Protein, lastItem.Carbohydrates, lastItem.Fats);
 
             bool isTtsEnabled = Preferences.Get("TTS_Enabled", true);
             if (isTtsEnabled)
@@ -154,5 +173,8 @@ namespace assignment_2425
     {
         public string Name { get; set; }
         public int Calories { get; set; }
+        public int Protein { get; set; }
+        public int Carbohydrates { get; set; }
+        public int Fats { get; set; }
     }
 }

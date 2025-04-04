@@ -25,6 +25,26 @@
                    Placeholder="Enter calories"
                    Keyboard="Numeric"
                    HorizontalOptions="FillAndExpand" />
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="CenterAndExpand">
+
+                <Entry x:Name="ProteinEntry"
+                   Placeholder="Protein (g)"
+                   Keyboard="Numeric"
+                   WidthRequest="100"
+                   HorizontalOptions="Center" />
+
+                <Entry x:Name="CarbsEntry"
+                   Placeholder="Carbs (g)"
+                   Keyboard="Numeric"
+                   WidthRequest="100"
+                   HorizontalOptions="Center" />
+
+                <Entry x:Name="FatsEntry"
+                   Placeholder="Fats (g)"
+                   Keyboard="Numeric"
+                   WidthRequest="100"
+                   HorizontalOptions="Center" />
+            </HorizontalStackLayout>
 
             <Button Text="Add Calories"
                     Clicked="OnAddCaloriesClicked"

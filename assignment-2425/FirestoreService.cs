@@ -28,7 +28,7 @@ namespace assignment_2425
             }
         }
 
-        public async Task SaveCalorieData(string userId, int calories, string foodName)
+        public async Task SaveCalorieData(string userId, int calories, string foodName, int protein, int carbohydrates, int fats)
         {
             try
             {
@@ -37,7 +37,11 @@ namespace assignment_2425
                 {
                     { "date", DateTime.UtcNow.ToString("yyyy-MM-dd") },
                     { "calories", calories },
-                    { "foodName", foodName }
+                    { "foodName", foodName },
+                    { "protein", protein },
+                    { "carbohydrates", carbohydrates },
+                    { "fats", fats }
+
                 };
                 await docRef.SetAsync(calorieData);
                 Console.WriteLine("Calorie data saved successfully!");
@@ -57,11 +61,11 @@ namespace assignment_2425
                 Query calorieQuery = db.Collection("users").Document(userId).Collection("calories");
                 QuerySnapshot snapshot = await calorieQuery.GetSnapshotAsync();
 
-                Console.WriteLine($"📄 Found {snapshot.Documents.Count} documents for {userId}");
+                Console.WriteLine($"Found {snapshot.Documents.Count} documents for {userId}");
 
                 foreach (DocumentSnapshot doc in snapshot.Documents)
                 {
-                    Dictionary<string, object> data = doc.ToDictionary();
+                    Dictionary<string, object> data = doc.ToDictionary(); //creating a dictionary for string objects
 
                     if (data.ContainsKey("date") && data.ContainsKey("calories"))
                     {
@@ -69,12 +73,18 @@ namespace assignment_2425
                         int calories = Convert.ToInt32(data["calories"]);
 
                         string foodName = data.ContainsKey("foodName") ? data["foodName"].ToString() : "Unknown";
+                        int protein = Convert.ToInt32(data["protein"]);
+                        int carbohydrates = Convert.ToInt32(data["carbohydrates"]);
+                        int fats = Convert.ToInt32(data["fats"]);
 
                         calorieList.Add(new CalorieRecord
                         {
                             Date = date,
                             Calories = $"{calories} kcal",
-                            FoodName = foodName
+                            FoodName = foodName,
+                            protein = protein,
+                            carbohydrates = carbohydrates,
+                            fats = fats
                         });
                     }
                     else
