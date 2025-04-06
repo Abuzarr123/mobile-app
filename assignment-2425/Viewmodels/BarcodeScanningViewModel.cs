@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using assignment_2425.Models;
+using Microsoft.Maui.Devices;
 using Newtonsoft.Json.Linq;
 
 namespace assignment_2425.ViewModels
@@ -20,6 +21,15 @@ namespace assignment_2425.ViewModels
 
             if (foodData != null)
             {
+                try
+                {
+                     Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(500));
+                }
+                catch (FeatureNotSupportedException)
+                {
+                    // Vibration not supported on device – safe to ignore
+                }
+
                 WeakReferenceMessenger.Default.Send(foodData);
             }
 
