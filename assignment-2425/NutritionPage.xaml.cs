@@ -1,187 +1,33 @@
-﻿using Firebase.Auth;
-using Microsoft.Maui.Storage; // Required for Secure Storage
-using Microsoft.Maui.Controls;
-using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.Messaging;
-using static assignment_2425.BarcodeScanning;
+﻿using assignment_2425.ViewModels;
 
 namespace assignment_2425
 {
     public partial class NutritionPage : ContentPage
     {
-        private ObservableCollection<FoodItem> FoodLog = new ObservableCollection<FoodItem>();
-        private int totalCalories = 0;
-        private FirebaseAuthProvider authProvider;
-
         public NutritionPage()
         {
             InitializeComponent();
-            FoodLogCollectionView.ItemsSource = FoodLog;
-            UpdateTotalCalories();
-
-            // Initialize FirebaseAuthProvider with my API key
-            authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBVnVmjhhb3tdb8XaIT_31IsEwYjQjN980"));
-            
+            BindingContext = new NutritionViewModel();
             NavigationPage.SetHasBackButton(this, false);
-
-            WeakReferenceMessenger.Default.Register<FoodScannedMessage>(this, (r, msg) =>
-            {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    FoodNameEntry.Text = msg.FoodName;
-                    CalorieEntry.Text = msg.Calories.ToString();
-                    ProteinEntry.Text = msg.Protein.ToString();
-                    CarbsEntry.Text = msg.Carbohydrates.ToString();
-                    FatsEntry.Text = msg.Fats.ToString();
-
-                    DisplayAlert("Scanned", $"Added {msg.FoodName}", "OK");
-                });
-            });
-
-
         }
 
-        private void OnAddCaloriesClicked(object sender, EventArgs e)
-        {
-            string foodName = FoodNameEntry.Text;
-            if (string.IsNullOrWhiteSpace(foodName))
-            {
-                DisplayAlert("Error", "Please enter a food name.", "OK");
-                return;
-            }
-
-            bool isValidCalories = int.TryParse(CalorieEntry.Text, out int calories);
-            bool isValidProtein = int.TryParse(ProteinEntry.Text, out int protein);
-            bool isValidCarbs = int.TryParse(CarbsEntry.Text, out int carbs);
-            bool isValidFats = int.TryParse(FatsEntry.Text, out int fats);
-
-            if (isValidCalories && calories > 0 && isValidProtein && isValidCarbs && isValidFats)
-            {
-                FoodLog.Add(new FoodItem
-                {
-                    Name = foodName,
-                    Calories = calories,
-                    Protein = protein,
-                    Carbohydrates = carbs,
-                    Fats = fats
-                });
-
-                totalCalories += calories;
-                UpdateTotalCalories();
-
-                // Clear input fields
-                FoodNameEntry.Text = "";
-                CalorieEntry.Text = "";
-                ProteinEntry.Text = "";
-                CarbsEntry.Text = "";
-                FatsEntry.Text = "";
-            }
-            else
-            {
-                DisplayAlert("Error", "Please enter valid numbers for all fields.", "OK");
-            }
-        }
-
-
-
-        private void UpdateTotalCalories()
-        {
-            TotalCaloriesLabel.Text = $"{totalCalories} kcal";
-        }
-        private async void OnSaveCaloriesClicked(object sender, EventArgs e)
-        {
-            if (FoodLog.Count == 0)
-            {
-                await DisplayAlert("Error", "No food items to save.", "OK");
-                return;
-            }
-
-            var lastItem = FoodLog.Last();
-            string userId = await SecureStorage.GetAsync("firebase_uid");
-
-            if (string.IsNullOrEmpty(userId))
-            {
-                await DisplayAlert("Error", "User ID not found. Please log in again.", "OK");
-                return;
-            }
-
-            var firestoreService = new FirestoreService();
-            await firestoreService.SaveCalorieData(userId, lastItem.Calories, lastItem.Name, lastItem.Protein, lastItem.Carbohydrates, lastItem.Fats);
-
-            bool isTtsEnabled = Preferences.Get("TTS_Enabled", true);
-            if (isTtsEnabled)
-            {
-                await TextToSpeech.Default.SpeakAsync($"You have consumed {totalCalories} calories today.");
-            }
-
-            await DisplayAlert("Success", "Your entry has been saved to your profile!", "OK");
-        }
-
-
-
-
-
-
-
-        private async void OnResetCaloriesClicked(object sender, EventArgs e)
-        {
-            bool resetConfirmed = await DisplayAlert("Reset", "Are you sure you want to reset today's calorie count?", "Yes", "No");
-
-            if (resetConfirmed)
-            {
-                FoodLog.Clear();
-                totalCalories = 0;
-                UpdateTotalCalories();
-            }
-        }
-
-        // adding 3 dots menu onto the calorie tracking page 
         private async void OnMenuClicked(object sender, EventArgs e)
         {
             string action = await DisplayActionSheet("Options", "Cancel", null, "Log Out");
-             if (action == "Log Out")
+            if (action == "Log Out")
             {
                 bool confirm = await DisplayAlert("Log Out", "Are you sure you want to log out?", "Yes", "No");
-
                 if (confirm)
                 {
-                    try
-                    {
-                        MessagingCenter.Send(this, "ClearProfileData");
-                        SecureStorage.Remove("firebase_token");
-
-                        // Remove stored user ID
-                        SecureStorage.Remove("firebase_uid");
-
-                        await Shell.Current.GoToAsync("//MainPage");
-                        await Task.Delay(100); // Ensure the navigation transition is smooth
-
-                        // Ensure the back button is visible on LoginPage
-                        Shell.SetNavBarIsVisible(Shell.Current.CurrentPage, true);
-                        NavigationPage.SetHasBackButton(Shell.Current.CurrentPage, true);
-                    }
-                    catch (Exception ex)
-                    {
-                        await DisplayAlert("Logout Error", $"Failed to log out: {ex.Message}", "OK");
-                    }
+                    MessagingCenter.Send(this, "ClearProfileData");
+                    SecureStorage.Remove("firebase_token");
+                    SecureStorage.Remove("firebase_uid");
+                    await Shell.Current.GoToAsync("//MainPage");
+                    await Task.Delay(100);
+                    Shell.SetNavBarIsVisible(Shell.Current.CurrentPage, true);
+                    NavigationPage.SetHasBackButton(Shell.Current.CurrentPage, true);
                 }
             }
         }
-        private async void OnScanBarcodeClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new BarcodeScanning());
-        }
-
-
-
-    }
-
-    public class FoodItem
-    {
-        public string Name { get; set; }
-        public int Calories { get; set; }
-        public int Protein { get; set; }
-        public int Carbohydrates { get; set; }
-        public int Fats { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:assignment_2425.ViewModels"
              x:Class="assignment_2425.NutritionPage"
              Title="Nutrition Tracker">
 
@@ -11,70 +12,66 @@
                      x:Name="MenuButton"/>
     </ContentPage.ToolbarItems>
 
+    <ContentPage.BindingContext>
+        <vm:NutritionViewModel />
+    </ContentPage.BindingContext>
+
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
             <Label Text="Daily Nutrition Intake" FontSize="22" FontAttributes="Bold" />
 
-            <!-- User can input their calories -->
-            <Entry x:Name="FoodNameEntry"
-                   Placeholder="Enter food name"
+            <Entry Placeholder="Enter food name"
+                   Text="{Binding FoodName}"
                    HorizontalOptions="FillAndExpand" />
-            
-            <Entry x:Name="CalorieEntry"
-                   Placeholder="Enter calories"
+
+            <Entry Placeholder="Enter calories"
+                   Text="{Binding Calories}"
                    Keyboard="Numeric"
                    HorizontalOptions="FillAndExpand" />
+
             <HorizontalStackLayout Spacing="10" HorizontalOptions="CenterAndExpand">
+                <Entry Placeholder="Protein (g)"
+                       Text="{Binding Protein}"
+                       Keyboard="Numeric"
+                       WidthRequest="100" />
 
-                <Entry x:Name="ProteinEntry"
-                   Placeholder="Protein (g)"
-                   Keyboard="Numeric"
-                   WidthRequest="100"
-                   HorizontalOptions="Center" />
+                <Entry Placeholder="Carbs (g)"
+                       Text="{Binding Carbs}"
+                       Keyboard="Numeric"
+                       WidthRequest="100" />
 
-                <Entry x:Name="CarbsEntry"
-                   Placeholder="Carbs (g)"
-                   Keyboard="Numeric"
-                   WidthRequest="100"
-                   HorizontalOptions="Center" />
-
-                <Entry x:Name="FatsEntry"
-                   Placeholder="Fats (g)"
-                   Keyboard="Numeric"
-                   WidthRequest="100"
-                   HorizontalOptions="Center" />
+                <Entry Placeholder="Fats (g)"
+                       Text="{Binding Fats}"
+                       Keyboard="Numeric"
+                       WidthRequest="100" />
             </HorizontalStackLayout>
 
             <Button Text="Add Calories"
-                    Clicked="OnAddCaloriesClicked"
+                    Command="{Binding AddCaloriesCommand}"
                     BackgroundColor="#00549E"
                     TextColor="White"
                     FontSize="{DynamicResource AppFontSize}"
                     CornerRadius="25"
-                    WidthRequest="200"/>
-
+                    WidthRequest="200" />
 
             <Button Text="Save to Profile"
-                    Clicked="OnSaveCaloriesClicked"
+                    Command="{Binding SaveCaloriesCommand}"
                     BackgroundColor="#00549E"
                     TextColor="White"
                     FontSize="{DynamicResource AppFontSize}"
                     CornerRadius="25"
-                    WidthRequest="200"/>
+                    WidthRequest="200" />
 
-
-
-            <!-- Display Logged Calories that user has inputted  -->
             <Label Text="Today's Total Calories:"
                    FontSize="{DynamicResource AppFontSize}"
                    FontAttributes="Bold"/>
-            <Label x:Name="TotalCaloriesLabel"
+
+            <Label Text="{Binding TotalCalories, StringFormat='{0} kcal'}"
                    FontSize="{DynamicResource AppFontSize}"
                    TextColor="Black"/>
 
-            <!-- Display List of Logged Food Items -->
-            <CollectionView x:Name="FoodLogCollectionView">
+            <CollectionView ItemsSource="{Binding FoodLog}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame Padding="10" Margin="5" BorderColor="Gray">
@@ -87,24 +84,21 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <!-- Onclick resets the daily calories  -->
             <Button Text="Reset Calories"
-                    Clicked="OnResetCaloriesClicked"
+                    Command="{Binding ResetCaloriesCommand}"
                     BackgroundColor="Red"
                     TextColor="White"
                     FontSize="{DynamicResource AppFontSize}"
                     CornerRadius="25"
-                    WidthRequest="200"/>
+                    WidthRequest="200" />
 
             <Button Text="Scan Barcode"
-                    Clicked="OnScanBarcodeClicked"
+                    Command="{Binding ScanBarcodeCommand}"
                     BackgroundColor="#00549E"
                     TextColor="White"
                     FontSize="{DynamicResource AppFontSize}"
                     CornerRadius="25"
-                    WidthRequest="200"/>
-
-
+                    WidthRequest="200" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

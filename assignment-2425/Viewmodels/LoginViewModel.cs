@@ -42,6 +42,7 @@ namespace assignment_2425.ViewModels
 
                 await ShowAlert("Success", "You are now logged in!");
                 await Shell.Current.GoToAsync("//NutritionPage");
+                await TriggerSuccessHaptic();
             }
             catch (FirebaseAuthException ex)
             {

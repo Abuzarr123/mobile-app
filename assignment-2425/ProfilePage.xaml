@@ -1,19 +1,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:assignment_2425.ViewModels"
              x:Class="assignment_2425.ProfilePage"
              Title="Profile">
 
+    <ContentPage.BindingContext>
+        <vm:ProfileViewModel />
+    </ContentPage.BindingContext>
+
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-
             <Label Text="Calorie History"
                    FontSize="22"
                    FontAttributes="Bold"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center" />
 
-            <!-- Table for displaying logged calories -->
-            <CollectionView x:Name="CalorieLogCollectionView"
-                ItemsSource="{Binding CalorieRecords}">
+            <CollectionView ItemsSource="{Binding CalorieRecords}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame Padding="10" Margin="5" BorderColor="Gray">
@@ -21,14 +23,12 @@
                                 <Label Text="{Binding Date}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold"/>
                                 <Label Text="{Binding Calories}" FontSize="{DynamicResource AppFontSize}" TextColor="Black" FontAttributes="Bold"/>
                                 <Label Text="{Binding FoodName}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold"/>
-                                <Label Text="{Binding Macronutrients}" FontSize="{DynamicResource AppFontSize}" TextColor="Black" FontAttributes="Bold" />
+                                <Label Text="{Binding Macronutrients}" FontSize="{DynamicResource AppFontSize}" TextColor="Black" FontAttributes="Bold"/>
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
