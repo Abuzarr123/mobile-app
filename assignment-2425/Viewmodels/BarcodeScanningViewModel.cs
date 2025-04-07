@@ -33,7 +33,10 @@ namespace assignment_2425.ViewModels
                 WeakReferenceMessenger.Default.Send(foodData);
             }
 
-            await Shell.Current.Navigation.PopAsync();
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await Shell.Current.Navigation.PopAsync();
+            });
         }
 
         private async Task<FoodScannedMessage?> FetchFoodDataAsync(string barcode)
