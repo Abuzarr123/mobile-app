@@ -18,6 +18,7 @@
             <Label
                 Text="Hello, welcome to your personal calorie app. This app will help you track your calorie intake that you are having on a daily basis!"
                 FontSize="{DynamicResource AppFontSize}"
+                SemanticProperties.Description="This is your personal calorie app to track your daily nutrion intake"
                 TextColor="Black"
                 HorizontalTextAlignment="Center"
                 SemanticProperties.HeadingLevel="Level1" />
@@ -28,6 +29,7 @@
                 Text="Sign Up / Log In"
                 Command="{Binding SignUpCommand}"
                 HorizontalOptions="Center"
+                SemanticProperties.Description="click on this to sign or log in"
                 Padding="30,15"
                 BackgroundColor="#00549E"
                 TextColor="White"

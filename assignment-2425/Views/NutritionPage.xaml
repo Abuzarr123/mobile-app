@@ -22,27 +22,32 @@
             <Label Text="Daily Nutrition Intake" FontSize="22" FontAttributes="Bold" />
 
             <Entry Placeholder="Enter food name"
+                   SemanticProperties.Description="Enter the name of your food"
                    Text="{Binding FoodName}"
                    HorizontalOptions="FillAndExpand" />
 
             <Entry Placeholder="Enter calories"
                    Text="{Binding Calories}"
+                   SemanticProperties.Description="enter your calories"
                    Keyboard="Numeric"
                    HorizontalOptions="FillAndExpand" />
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="CenterAndExpand">
                 <Entry Placeholder="Protein (g)"
                        Text="{Binding Protein}"
+                       SemanticProperties.Description="enter the protein"
                        Keyboard="Numeric"
                        WidthRequest="100" />
 
                 <Entry Placeholder="Carbs (g)"
                        Text="{Binding Carbs}"
+                       SemanticProperties.Description="enter the carbs"
                        Keyboard="Numeric"
                        WidthRequest="100" />
 
                 <Entry Placeholder="Fats (g)"
                        Text="{Binding Fats}"
+                       SemanticProperties.Description="enter the fats"
                        Keyboard="Numeric"
                        WidthRequest="100" />
             </HorizontalStackLayout>
@@ -50,6 +55,7 @@
             <Button Text="Add Calories"
                     Command="{Binding AddCaloriesCommand}"
                     BackgroundColor="#00549E"
+                    SemanticProperties.Description="click this button to add your calories"
                     TextColor="White"
                     FontSize="{DynamicResource AppFontSize}"
                     CornerRadius="25"
@@ -57,6 +63,7 @@
 
             <Button Text="Save to Profile"
                     Command="{Binding SaveCaloriesCommand}"
+                    SemanticProperties.Description="click this button to save your calories to your profile"
                     BackgroundColor="#00549E"
                     TextColor="White"
                     FontSize="{DynamicResource AppFontSize}"
@@ -87,6 +94,7 @@
             <Button Text="Reset Calories"
                     Command="{Binding ResetCaloriesCommand}"
                     BackgroundColor="Red"
+                    SemanticProperties.Description="click this button to reset your calories"
                     TextColor="White"
                     FontSize="{DynamicResource AppFontSize}"
                     CornerRadius="25"
@@ -95,6 +103,7 @@
             <Button Text="Scan Barcode"
                     Command="{Binding ScanBarcodeCommand}"
                     BackgroundColor="#00549E"
+                    SemanticProperties.Description="Click this button to scan a barcode of an item"
                     TextColor="White"
                     FontSize="{DynamicResource AppFontSize}"
                     CornerRadius="25"

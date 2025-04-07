@@ -30,8 +30,9 @@
                    FontSize="{Binding FontSizeValue}"
                    HorizontalOptions="Center" />
 
-            <Switch IsToggled="{Binding IsTextToSpeechEnabled}">
-                
+            <Switch IsToggled="{Binding IsTextToSpeechEnabled} " SemanticProperties.Description="Toggle text to speech on or off">
+
+
             </Switch>
 
         </VerticalStackLayout>

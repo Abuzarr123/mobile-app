@@ -13,6 +13,7 @@
         <VerticalStackLayout VerticalOptions="Center" Padding="30" Spacing="25">
 
             <Label Text="Welcome Back!"
+                   SemanticProperties.Description="Welcome back" 
                    FontSize="26"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
@@ -21,6 +22,7 @@
             <!-- Email Entry -->
             <Frame CornerRadius="12" BorderColor="#CCCCCC" HasShadow="False" Padding="10">
                 <Entry Placeholder="Email"
+                       SemanticProperties.Description="enter your email"
                        Keyboard="Email"
                        Text="{Binding Email}"
                        FontSize="{DynamicResource AppFontSize}"
@@ -30,6 +32,7 @@
             <!-- Password Entry -->
             <Frame CornerRadius="12" BorderColor="#CCCCCC" HasShadow="False" Padding="10">
                 <Entry Placeholder="Password"
+                       SemanticProperties.Description="enter your password"
                        IsPassword="True"
                        Text="{Binding Password}"
                        FontSize="{DynamicResource AppFontSize}"
@@ -40,6 +43,7 @@
             <Button Text="Log In"
                     Command="{Binding LoginCommand}"
                     BackgroundColor="#00549E"
+                    SemanticProperties.Description="User log in" 
                     TextColor="White"
                     FontAttributes="Bold"
                     CornerRadius="25"
@@ -51,6 +55,7 @@
             <Button Text="Sign Up"
                     Command="{Binding SignUpCommand}"
                     BackgroundColor="#00549E"
+                    SemanticProperties.Description="User sign up" 
                     TextColor="White"
                     FontAttributes="Bold"
                     CornerRadius="25"

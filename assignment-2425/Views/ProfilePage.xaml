@@ -12,6 +12,7 @@
         <VerticalStackLayout Padding="20" Spacing="15">
             <Label Text="Calorie History"
                    FontSize="22"
+                   SemanticProperties.Description="Your calorie history"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
