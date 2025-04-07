@@ -66,7 +66,7 @@ namespace assignment_2425
 
                 foreach (DocumentSnapshot doc in snapshot.Documents)
                 {
-                    Dictionary<string, object> data = doc.ToDictionary(); //creating a dictionary for string objects
+                    Dictionary<string, object> data = doc.ToDictionary(); //creating a dictionary for string objects for firebase
 
                     if (data.ContainsKey("date") && data.ContainsKey("calories"))
                     {
@@ -101,5 +101,31 @@ namespace assignment_2425
 
             return calorieList;
         }
+        public async Task DeleteCalorieData(string userId, CalorieRecord item) // delete calorie data from the firebase database
+        {
+            try
+            {
+                var collection = db.Collection("users").Document(userId).Collection("calories");
+                var snapshot = await collection.GetSnapshotAsync();
+
+                foreach (var doc in snapshot.Documents)
+                {
+                    var data = doc.ToDictionary();
+                    if (data["date"].ToString() == item.Date &&
+                        data["foodName"].ToString() == item.FoodName &&
+                        data["calories"].ToString() == item.Calories.Replace(" kcal", ""))
+                    {
+                        await doc.Reference.DeleteAsync();
+                        Console.WriteLine("Deleted successfully from Firebase.");
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting document: {ex.Message}");
+            }
+        }
+
     }
 }

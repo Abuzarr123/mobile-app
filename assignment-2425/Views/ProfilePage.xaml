@@ -19,7 +19,17 @@
             <CollectionView ItemsSource="{Binding CalorieRecords}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame Padding="10" Margin="5" BorderColor="Gray">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete"
+                                   BackgroundColor="Red"
+                                   Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProfileViewModel}}, Path=DeleteCalorieCommand}"
+                                   CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            
+                            <Frame Padding="10" Margin="5" BorderColor="Gray">
                             <VerticalStackLayout>
                                 <Label Text="{Binding Date}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold" TextColor="Black"/>
                                 <Label Text="{Binding Calories}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold" TextColor="Black"/>
@@ -27,6 +37,7 @@
                                 <Label Text="{Binding Macronutrients}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold" TextColor="Black"/>
                             </VerticalStackLayout>
                         </Frame>
+                        </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
