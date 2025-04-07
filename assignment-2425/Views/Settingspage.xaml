@@ -30,10 +30,16 @@
                    FontSize="{Binding FontSizeValue}"
                    HorizontalOptions="Center" />
 
-            <Switch IsToggled="{Binding IsTextToSpeechEnabled} " SemanticProperties.Description="Toggle text to speech on or off">
+            <Switch IsToggled="{Binding IsTextToSpeechEnabled} " SemanticProperties.Description="Toggle text to speech on or off" />
 
 
-            </Switch>
+
+            <Label Text="Enable/disable haptic feedback"
+                   FontSize="{Binding FontSizeValue}"
+                   HorizontalOptions="Center" />
+
+            <Switch IsToggled="{Binding IsHapticEnabled}" SemanticProperties.Description="Toggle haptic feedback on or off" />
+
             <Label Text="Dark Mode"
                    FontSize="{Binding FontSizeValue}"
                    HorizontalOptions="Center" />

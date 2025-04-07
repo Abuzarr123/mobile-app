@@ -27,7 +27,8 @@ namespace assignment_2425.ViewModels
         [RelayCommand]
         private async Task Login()
         {
-            HapticFeedback.Perform(HapticFeedbackType.Click);
+            if (Preferences.Get("Haptic_Enabled", true))
+                HapticFeedback.Perform(HapticFeedbackType.Click);
 
             if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
             {
@@ -66,7 +67,8 @@ namespace assignment_2425.ViewModels
         [RelayCommand]
         private async Task SignUp()
         {
-            HapticFeedback.Perform(HapticFeedbackType.Click); //hapric feedback for button click
+            if (Preferences.Get("Haptic_Enabled", true))
+                HapticFeedback.Perform(HapticFeedbackType.Click); //hapric feedback for button click
 
             if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
             {
@@ -116,12 +118,16 @@ namespace assignment_2425.ViewModels
 
         private async Task TriggerSuccessHaptic()
         {
+            if (!Preferences.Get("Haptic_Enabled", true)) return;
+
             await RequestVibrationPermission();
             Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(100));
         }
 
         private async Task TriggerWarningHaptic()
         {
+            if (!Preferences.Get("Haptic_Enabled", true)) return;
+
             await RequestVibrationPermission();
             Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(300));
         }

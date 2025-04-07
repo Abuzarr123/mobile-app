@@ -27,7 +27,7 @@ namespace assignment_2425
             }
         }
 
-        private double fontSizeValue = 14;
+        private double fontSizeValue = 16;
         public double FontSizeValue
         {
             get => fontSizeValue;
@@ -49,7 +49,7 @@ namespace assignment_2425
                 "Medium" => 14,
                 "Large" => 18,
                 "Extra Large" => 22,
-                _ => 14 // sets a range of values based on different font sizes and base font being 14
+                _ => 16 // sets a range of values based on different font sizes and base font being 16
             };
             Application.Current.Resources["AppFontSize"] = FontSizeValue;
 
@@ -86,6 +86,22 @@ namespace assignment_2425
                 }
             }
         }
+        private bool isHapticEnabled;
+
+        public bool IsHapticEnabled
+        {
+            get => isHapticEnabled;
+            set
+            {
+                if (isHapticEnabled != value)
+                {
+                    isHapticEnabled = value;
+                    Preferences.Set("Haptic_Enabled", value);
+                    OnPropertyChanged();
+                }
+            }
+        }
+
 
         private void ApplyTheme(bool darkMode)
         {
@@ -96,6 +112,7 @@ namespace assignment_2425
         {
             IsTextToSpeechEnabled = Preferences.Get("TTS_Enabled", true);
             IsDarkModeEnabled = Preferences.Get("DarkMode_Enabled", false);
+            IsHapticEnabled = Preferences.Get("Haptic_Enabled", true);
             ApplyTheme(IsDarkModeEnabled);
         }
 
