@@ -34,6 +34,12 @@
 
 
             </Switch>
+            <Label Text="Dark Mode"
+                   FontSize="{Binding FontSizeValue}"
+                   HorizontalOptions="Center" />
+
+            <Switch IsToggled="{Binding IsDarkModeEnabled}" 
+                   SemanticProperties.Description="Toggle dark mode on or off"/>
 
         </VerticalStackLayout>
     </ScrollView>

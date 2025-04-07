@@ -11,5 +11,6 @@
 
             MainPage = new AppShell();
         }
+
     }
 }

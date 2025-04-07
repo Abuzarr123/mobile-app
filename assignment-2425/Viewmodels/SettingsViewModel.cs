@@ -69,9 +69,34 @@ namespace assignment_2425
                 }
             }
         }
+
+        private bool isDarkModeEnabled;
+
+        public bool IsDarkModeEnabled
+        {
+            get => isDarkModeEnabled;
+            set
+            {
+                if (isDarkModeEnabled != value)
+                {
+                    isDarkModeEnabled = value;
+                    Preferences.Set("DarkMode_Enabled", value);
+                    ApplyTheme(value);
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private void ApplyTheme(bool darkMode)
+        {
+            Application.Current.UserAppTheme = darkMode ? AppTheme.Dark : AppTheme.Light;
+        }
+
         public SettingsViewModel()
         {
             IsTextToSpeechEnabled = Preferences.Get("TTS_Enabled", true);
+            IsDarkModeEnabled = Preferences.Get("DarkMode_Enabled", false);
+            ApplyTheme(IsDarkModeEnabled);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;   
