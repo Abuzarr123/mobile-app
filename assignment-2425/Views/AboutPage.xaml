@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="assignment_2425.Views.AboutPage"
+             Title="About Page">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+
+            <!-- App Icon / Emoji Header -->
+            <Label Text="🍽️"
+                   FontSize="40"
+                   HorizontalOptions="Center"
+                   SemanticProperties.Description="App icon" />
+
+            <Label Text="About the App"
+                   SemanticProperties.Description="About the application"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+            
+            <Label Text="ℹ️ Info"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   SemanticProperties.Description="Information section" />
+
+            <Frame CornerRadius="12" BorderColor="#CCCCCC" HasShadow="False" Padding="15" Margin="0,5">
+                <Label Text="This application helps you track your daily nutrition intake, including calories, protein, carbs, and fats."
+                       SemanticProperties.Description="Track your daily nutrition intake"
+                       FontSize="{DynamicResource AppFontSize}"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Center" />
+            </Frame>
+
+            <Frame CornerRadius="12" BorderColor="#CCCCCC" HasShadow="False" Padding="15" Margin="0,5">
+                <Label Text="You can manually add food items, scan barcodes to retrieve nutrition data, and save logs to view your history."
+                       SemanticProperties.Description="Add and scan food items"
+                       FontSize="{DynamicResource AppFontSize}"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Center" />
+            </Frame>
+
+            <Frame CornerRadius="12" BorderColor="#CCCCCC" HasShadow="False" Padding="15" Margin="0,5">
+                <Label Text="In Settings, adjust font size, toggle text-to-speech, enable haptic feedback, and switch between dark and light mode for accessibility."
+                       SemanticProperties.Description="Customize accessibility settings"
+                       FontSize="{DynamicResource AppFontSize}"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Center" />
+            </Frame>
+
+            <!-- Footer -->
+            <Label Text="Version 1.0"
+                   FontSize="{DynamicResource AppFontSize}"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Developed by Abuzarr Ahmed"
+                   FontSize="{DynamicResource AppFontSize}"
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

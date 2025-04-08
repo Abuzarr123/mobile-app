@@ -8,7 +8,8 @@ namespace assignment_2425.ViewModels
 {
     public partial class BarcodeScanningViewModel : ObservableObject
     {
-        [ObservableProperty] private bool isScanned = false;
+        [ObservableProperty] 
+        private bool isScanned = false;
 
         public async Task HandleBarcodeDetectedAsync(string barcode)
         {

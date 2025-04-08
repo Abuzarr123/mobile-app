@@ -23,7 +23,7 @@
                             <SwipeView.RightItems>
                                 <SwipeItems>
                                     <SwipeItem Text="Delete"
-                                   BackgroundColor="Red"
+                                   BackgroundColor="#AD0000"
                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProfileViewModel}}, Path=DeleteCalorieCommand}"
                                    CommandParameter="{Binding .}" />
                                 </SwipeItems>

@@ -1,4 +1,5 @@
 ﻿using assignment_2425.ViewModels;
+using assignment_2425.Views;
 
 namespace assignment_2425
 {
@@ -13,8 +14,12 @@ namespace assignment_2425
 
         private async void OnMenuClicked(object sender, EventArgs e)
         {
-            string action = await DisplayActionSheet("Options", "Cancel", null, "Log Out");
-            if (action == "Log Out")
+            string action = await DisplayActionSheet("Options", "Cancel", null, "About page", "Log Out");
+            if (action == "About page")
+            {
+                await Navigation.PushAsync(new AboutPage());
+            }
+            else if (action == "Log Out")
             {
                 bool confirm = await DisplayAlert("Log Out", "Are you sure you want to log out?", "Yes", "No");
                 if (confirm)

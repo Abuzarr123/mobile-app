@@ -38,7 +38,8 @@ namespace assignment_2425.ViewModels
 
             try
             {
-                var auth = await _authProvider.SignInWithEmailAndPasswordAsync(Email, Password); //uses email and password to sign in
+                //uses email and password to sign in
+                var auth = await _authProvider.SignInWithEmailAndPasswordAsync(Email, Password); 
                 await SecureStorage.SetAsync("firebase_uid", auth.User.LocalId);
 
                 await ShowAlert("Success", "You are now logged in!");

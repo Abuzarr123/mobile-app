@@ -75,8 +75,7 @@
                    FontAttributes="Bold"/>
 
             <Label Text="{Binding TotalCalories, StringFormat='{0} kcal'}"
-                   FontSize="{DynamicResource AppFontSize}"
-                   TextColor="Black"/>
+                   FontSize="{DynamicResource AppFontSize}" />
 
             <CollectionView ItemsSource="{Binding FoodLog}">
                 <CollectionView.ItemTemplate>
@@ -93,7 +92,7 @@
 
             <Button Text="Reset Calories"
                     Command="{Binding ResetCaloriesCommand}"
-                    BackgroundColor="Red"
+                    BackgroundColor="#AD0000"
                     SemanticProperties.Description="click this button to reset your calories"
                     TextColor="White"
                     FontSize="{DynamicResource AppFontSize}"

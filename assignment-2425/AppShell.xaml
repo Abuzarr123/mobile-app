@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:assignment_2425"
+    xmlns:views="clr-namespace:assignment_2425.Views"
     Shell.FlyoutBehavior="Disabled"
     Shell.BackgroundColor="#00549E"
     Shell.TitleColor="White"
@@ -28,7 +29,14 @@
             ContentTemplate="{DataTemplate local:LoginPage}"
             Route="LoginPage"/>
     </ShellItem>
-  
+    
+    <ShellItem Route="AboutPage">
+        <ShellContent
+            Title="AboutPage"
+            ContentTemplate="{DataTemplate views:AboutPage}"
+            Route="AboutPage"/>
+    </ShellItem>
+
     <TabBar Route="AppTabs">
         <Tab Title="Calories" Icon="calories_icon.svg">
             <ShellContent
