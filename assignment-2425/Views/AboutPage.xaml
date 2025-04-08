@@ -49,7 +49,6 @@
                        HorizontalTextAlignment="Center" />
             </Frame>
 
-            <!-- Footer -->
             <Label Text="Version 1.0"
                    FontSize="{DynamicResource AppFontSize}"
                    HorizontalOptions="Center" />
