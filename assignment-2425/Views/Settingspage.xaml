@@ -11,6 +11,30 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
 
+            <Label Text="Profile Picture"
+                   FontSize="{Binding FontSizeValue}"
+                   HorizontalOptions="Center" />
+
+            <Image Source="{Binding ProfileImage}"
+                   WidthRequest="100"
+                   HeightRequest="100"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Aspect="AspectFill"
+                   BackgroundColor="#e0e0e0"
+                   Margin="0,10"
+                   SemanticProperties.Description="Your selected profile image" />
+
+            <Button Text="Change Picture"
+                    Command="{Binding ChangeProfilePictureCommand}"
+                    FontSize="{DynamicResource AppFontSize}"
+                    BackgroundColor="#00549E"
+                    TextColor="White"
+                    CornerRadius="20"
+                    WidthRequest="200"
+                    HorizontalOptions="Center"
+                    SemanticProperties.Description="Change your profile picture" />
+
             <Label Text="Font Size Settings"
                    FontSize="20"
                    FontAttributes="Bold"
@@ -30,22 +54,22 @@
                    FontSize="{Binding FontSizeValue}"
                    HorizontalOptions="Center" />
 
-            <Switch IsToggled="{Binding IsTextToSpeechEnabled} " SemanticProperties.Description="Toggle text to speech on or off" />
-
-
+            <Switch IsToggled="{Binding IsTextToSpeechEnabled}"
+                    SemanticProperties.Description="Toggle text to speech on or off" />
 
             <Label Text="Enable/disable haptic feedback"
                    FontSize="{Binding FontSizeValue}"
                    HorizontalOptions="Center" />
 
-            <Switch IsToggled="{Binding IsHapticEnabled}" SemanticProperties.Description="Toggle haptic feedback on or off" />
+            <Switch IsToggled="{Binding IsHapticEnabled}"
+                    SemanticProperties.Description="Toggle haptic feedback on or off" />
 
             <Label Text="Dark Mode"
                    FontSize="{Binding FontSizeValue}"
                    HorizontalOptions="Center" />
 
             <Switch IsToggled="{Binding IsDarkModeEnabled}" 
-                   SemanticProperties.Description="Toggle dark mode on or off"/>
+                    SemanticProperties.Description="Toggle dark mode on or off"/>
 
         </VerticalStackLayout>
     </ScrollView>
