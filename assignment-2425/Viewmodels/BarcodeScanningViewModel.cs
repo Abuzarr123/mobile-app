@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using assignment_2425.Models;
 using Microsoft.Maui.Devices;
 using Newtonsoft.Json.Linq;
-// add some error handling for barcode scanning 
 namespace assignment_2425.ViewModels
 {
     public partial class BarcodeScanningViewModel : ObservableObject
