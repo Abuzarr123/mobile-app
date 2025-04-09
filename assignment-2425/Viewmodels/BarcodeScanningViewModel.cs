@@ -24,7 +24,8 @@ namespace assignment_2425.ViewModels
             {
                 try
                 {
-                     Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(500)); // successfull barcode scan vibrates
+                    if (Preferences.Get("Vibration_enabled", true))
+                        Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(500)); // successfull barcode scan vibrates
                 }
                 catch (FeatureNotSupportedException)
                 {

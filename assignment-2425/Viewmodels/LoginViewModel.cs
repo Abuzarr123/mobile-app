@@ -119,7 +119,7 @@ namespace assignment_2425.ViewModels
 
         private async Task TriggerSuccessHaptic() // function for haptic feedback
         {
-            if (!Preferences.Get("Haptic_Enabled", true)) return;
+            
 
             await RequestVibrationPermission();
             Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(100)); 
@@ -127,8 +127,6 @@ namespace assignment_2425.ViewModels
 
         private async Task TriggerWarningHaptic() // function for haptic feedback
         {
-            if (!Preferences.Get("Haptic_Enabled", true)) return;
-
             await RequestVibrationPermission();
             Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(300));
         }

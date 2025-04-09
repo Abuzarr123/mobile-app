@@ -180,6 +180,20 @@ namespace assignment_2425
                 }
             }
         }
+        private bool isVibrationEnabled;
+        public bool IsVibrationEnabled
+        {
+            get => isVibrationEnabled;
+            set
+            {
+                if (isVibrationEnabled != value)
+                {
+                    isVibrationEnabled = value;
+                    Preferences.Set("Vibration_enabled", value);
+                    OnPropertyChanged();
+                }
+            }
+        }
 
 
         private void ApplyTheme(bool darkMode)
@@ -192,6 +206,7 @@ namespace assignment_2425
             IsTextToSpeechEnabled = Preferences.Get("TTS_Enabled", true);
             IsDarkModeEnabled = Preferences.Get("DarkMode_Enabled", false);
             IsHapticEnabled = Preferences.Get("Haptic_Enabled", true);
+            IsVibrationEnabled = Preferences.Get("Vibration_enabled", true);
             ApplyTheme(IsDarkModeEnabled);
 
         }

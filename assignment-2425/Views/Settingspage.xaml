@@ -63,6 +63,13 @@
 
             <Switch IsToggled="{Binding IsHapticEnabled}"
                     SemanticProperties.Description="Toggle haptic feedback on or off" />
+            
+            <Label Text="Enable/disable vibration"
+                   FontSize="{Binding FontSizeValue}"
+                   HorizontalOptions="Center" />
+
+            <Switch IsToggled="{Binding IsVibrationEnabled}"
+                    SemanticProperties.Description="Toggle haptic feedback on or off" />
 
             <Label Text="Dark Mode"
                    FontSize="{Binding FontSizeValue}"

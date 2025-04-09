@@ -82,11 +82,11 @@
                     <DataTemplate>
                         <Frame Padding="10" Margin="5" BorderColor="Gray">
                             <VerticalStackLayout>
-                                <Label Text="{Binding Name}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold" />
-                                <Label Text="{Binding Calories, StringFormat='Calories: {0} g'}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold" />
-                                <Label Text="{Binding Protein, StringFormat='Protein: {0} g'}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold " />
-                                <Label Text="{Binding Carbohydrates, StringFormat='Carbohydrates: {0} g'}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold " />
-                                <Label Text="{Binding Fats, StringFormat='Fats: {0} g'}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold " />
+                                <Label Text="{Binding Name}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold" TextColor="Black" />
+                                <Label Text="{Binding Calories, StringFormat='Calories: {0} g'}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold" TextColor="Black" />
+                                <Label Text="{Binding Protein, StringFormat='Protein: {0} g'}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold " TextColor="Black"/>
+                                <Label Text="{Binding Carbohydrates, StringFormat='Carbohydrates: {0} g'}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold" TextColor="Black" />
+                                <Label Text="{Binding Fats, StringFormat='Fats: {0} g'}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold" TextColor="Black" />
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
