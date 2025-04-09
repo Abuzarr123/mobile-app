@@ -10,7 +10,7 @@ namespace assignment_2425
         {
             var builder = MauiApp.CreateBuilder();
             builder
-                .UseBarcodeReader()
+                .UseBarcodeReader() // register Zxing
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {

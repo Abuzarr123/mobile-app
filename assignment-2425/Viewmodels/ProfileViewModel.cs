@@ -17,6 +17,7 @@ namespace assignment_2425.ViewModels
         {
             firestoreService = new FirestoreService();
 
+            
             MessagingCenter.Subscribe<NutritionPage>(this, "ClearProfileData", (sender) =>
             {
                 CalorieRecords.Clear();
@@ -49,7 +50,7 @@ namespace assignment_2425.ViewModels
             string userId = await SecureStorage.GetAsync("firebase_uid");
             if (!string.IsNullOrEmpty(userId))
             {
-                await firestoreService.DeleteCalorieData(userId, item); // 🔧 Implement this next
+                await firestoreService.DeleteCalorieData(userId, item); 
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿// BarcodeScannedMessage.cs
-using CommunityToolkit.Mvvm.Messaging.Messages;
+﻿using CommunityToolkit.Mvvm.Messaging.Messages;
 
 namespace assignment_2425
 {

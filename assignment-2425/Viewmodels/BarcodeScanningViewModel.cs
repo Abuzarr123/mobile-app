@@ -24,7 +24,7 @@ namespace assignment_2425.ViewModels
             {
                 try
                 {
-                     Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(500));
+                     Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(500)); // successfull barcode scan vibrates
                 }
                 catch (FeatureNotSupportedException)
                 {
@@ -40,7 +40,7 @@ namespace assignment_2425.ViewModels
             });
         }
 
-        private async Task<FoodScannedMessage?> FetchFoodDataAsync(string barcode)
+        private async Task<FoodScannedMessage?> FetchFoodDataAsync(string barcode) // function to Call to the openfoodfacts api
         {
             try
             {

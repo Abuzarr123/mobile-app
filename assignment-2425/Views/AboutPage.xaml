@@ -7,7 +7,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
 
-            <!-- App Icon / Emoji Header -->
+            <!-- Food plate icon -->
             <Label Text="🍽️"
                    FontSize="40"
                    HorizontalOptions="Center"

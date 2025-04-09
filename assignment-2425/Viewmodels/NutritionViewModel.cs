@@ -27,6 +27,8 @@ namespace assignment_2425.ViewModels
         public NutritionViewModel()
         {
             firestoreService = new FirestoreService();
+
+            // listens for message from the barcode scan
             WeakReferenceMessenger.Default.Register<FoodScannedMessage>(this, (r, msg) =>
             {
                 FoodName = msg.FoodName;
@@ -38,7 +40,7 @@ namespace assignment_2425.ViewModels
         }
 
         [RelayCommand]
-        private void AddCalories()
+        private void AddCalories() // function to add calories to food log
         {
             if (string.IsNullOrWhiteSpace(FoodName)) return;
 
@@ -63,7 +65,7 @@ namespace assignment_2425.ViewModels
         }
 
         [RelayCommand]
-        public async Task SaveCaloriesAsync()
+        public async Task SaveCaloriesAsync() // function to save calories to firestore database
         {
             if (!FoodLog.Any()) return;
 
@@ -81,14 +83,14 @@ namespace assignment_2425.ViewModels
         }
 
         [RelayCommand]
-        public void ResetCalories()
+        public void ResetCalories() // resets total calories
         {
             FoodLog.Clear();
             TotalCalories = 0;
         }
 
         [RelayCommand]
-        public async Task ScanBarcodeAsync()
+        public async Task ScanBarcodeAsync() // Navigates to barcode scanning page
         {
             await Shell.Current.Navigation.PushAsync(new BarcodeScanning());
         }

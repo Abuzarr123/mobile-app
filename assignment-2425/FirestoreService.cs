@@ -29,6 +29,7 @@ namespace assignment_2425
             }
         }
 
+        //Saving the calorie data 
         public async Task SaveCalorieData(string userId, int calories, string foodName, int protein, int carbohydrates, int fats)
         {
             try
@@ -53,6 +54,7 @@ namespace assignment_2425
             }
         }
 
+        // using user ID for the calorie data
         public async Task<List<CalorieRecord>> GetCalorieData(string userId)
         {
             List<CalorieRecord> calorieList = new List<CalorieRecord>();

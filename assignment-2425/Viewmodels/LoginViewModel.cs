@@ -13,7 +13,7 @@ namespace assignment_2425.ViewModels
     {
         private readonly FirebaseAuthProvider _authProvider; //firebase authentication
 
-        [ObservableProperty] // property in place of 
+        [ObservableProperty] 
         private string email;
 
         [ObservableProperty]
@@ -27,8 +27,8 @@ namespace assignment_2425.ViewModels
         [RelayCommand]
         private async Task Login()
         {
-            if (Preferences.Get("Haptic_Enabled", true))
-                HapticFeedback.Perform(HapticFeedbackType.Click);
+            if (Preferences.Get("Haptic_Enabled", true)) 
+                HapticFeedback.Perform(HapticFeedbackType.Click); //haptic feedback on login button
 
             if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
             {
@@ -93,7 +93,7 @@ namespace assignment_2425.ViewModels
             }
             catch (FirebaseAuthException ex)
             {
-                await TriggerWarningHaptic();
+                await TriggerWarningHaptic(); // feedback triggers if not successfull for longer periods
 
                 string message = ex.Reason switch
                 {
@@ -117,15 +117,15 @@ namespace assignment_2425.ViewModels
                 Application.Current.MainPage.DisplayAlert(title, message, "OK"));
         }
 
-        private async Task TriggerSuccessHaptic()
+        private async Task TriggerSuccessHaptic() // function for haptic feedback
         {
             if (!Preferences.Get("Haptic_Enabled", true)) return;
 
             await RequestVibrationPermission();
-            Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(100));
+            Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(100)); 
         }
 
-        private async Task TriggerWarningHaptic()
+        private async Task TriggerWarningHaptic() // function for haptic feedback
         {
             if (!Preferences.Get("Haptic_Enabled", true)) return;
 
