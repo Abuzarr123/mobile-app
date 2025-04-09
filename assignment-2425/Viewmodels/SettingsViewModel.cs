@@ -26,7 +26,7 @@ namespace assignment_2425
         }
 
         [RelayCommand]
-        public async Task ChangeProfilePictureAsync()
+        public async Task ChangeProfilePictureAsync() // function for taking photo/choosing one from the gallery
         {
             string action = await Shell.Current.DisplayActionSheet("Choose profile picture", "Cancel", null, "Take Photo", "Choose from Gallery");
 
@@ -136,7 +136,7 @@ namespace assignment_2425
             Application.Current.Resources["AppFontSize"] = FontSizeValue;
         }
         private bool isTextToSpeechEnabled;
-        public bool IsTextToSpeechEnabled
+        public bool IsTextToSpeechEnabled //text to speech function enabled
         {
             get => isTextToSpeechEnabled;
             set
@@ -151,7 +151,7 @@ namespace assignment_2425
         }
 
         private bool isDarkModeEnabled;
-        public bool IsDarkModeEnabled
+        public bool IsDarkModeEnabled //darkmode enabled function
         {
             get => isDarkModeEnabled;
             set
@@ -167,7 +167,7 @@ namespace assignment_2425
         }
 
         private bool isHapticEnabled;
-        public bool IsHapticEnabled
+        public bool IsHapticEnabled //haptic function enabled
         {
             get => isHapticEnabled;
             set
@@ -181,7 +181,7 @@ namespace assignment_2425
             }
         }
         private bool isVibrationEnabled;
-        public bool IsVibrationEnabled
+        public bool IsVibrationEnabled //vibration enabled function
         {
             get => isVibrationEnabled;
             set
