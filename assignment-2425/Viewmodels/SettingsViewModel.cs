@@ -80,10 +80,6 @@ namespace assignment_2425
                     ProfileImage = ImageSource.FromFile(newFile);
                 }
             }
-            /*catch (FeatureNotSupportedException)
-            {
-               await Shell.Current.DisplayAlert("Error", "Camera not supported on this device.", "OK");
-            }*/
             catch (PermissionException)
             {
                 await Shell.Current.DisplayAlert("Error", "Camera permission denied.", "OK");
