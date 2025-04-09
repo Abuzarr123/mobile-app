@@ -8,6 +8,8 @@ using assignment_2425.Models;
 using System.Linq;
 using System.Windows.Input;
 
+//add some user error handling
+
 namespace assignment_2425.ViewModels
 {
     public partial class NutritionViewModel : ObservableObject
@@ -40,9 +42,17 @@ namespace assignment_2425.ViewModels
         }
 
         [RelayCommand]
-        private void AddCalories() // function to add calories to food log
+        private async void AddCalories() // function to add calories to food log
         {
-            if (string.IsNullOrWhiteSpace(FoodName)) return;
+            if (string.IsNullOrWhiteSpace(FoodName) ||
+                string.IsNullOrWhiteSpace(Calories) ||
+                string.IsNullOrWhiteSpace(Protein) ||
+                string.IsNullOrWhiteSpace(Carbs) ||
+                string.IsNullOrWhiteSpace(Fats))
+            {
+                await ShowAlert("Missing Information", "Please fill in all fields before adding.");
+                return;
+            }
 
             if (int.TryParse(Calories, out int cal) &&
                 int.TryParse(Protein, out int pro) &&
@@ -67,7 +77,12 @@ namespace assignment_2425.ViewModels
         [RelayCommand]
         public async Task SaveCaloriesAsync() // function to save calories to firestore database
         {
-            if (!FoodLog.Any()) return;
+            if (!FoodLog.Any()) 
+            {
+                await ShowAlert("No data", "Please fill out the values before saving");
+                return;
+            }
+            
 
             string userId = await SecureStorage.GetAsync("firebase_uid");
             if (string.IsNullOrEmpty(userId)) return;
@@ -80,6 +95,7 @@ namespace assignment_2425.ViewModels
             {
                 await TextToSpeech.Default.SpeakAsync($"You have consumed {TotalCalories} calories today.");
             }
+                await ShowAlert("Saved", "Your data has been saved to your profile.");
         }
 
         [RelayCommand]
@@ -94,5 +110,11 @@ namespace assignment_2425.ViewModels
         {
             await Shell.Current.Navigation.PushAsync(new BarcodeScanning());
         }
+        private async Task ShowAlert(string title, string message)
+        {
+            await MainThread.InvokeOnMainThreadAsync(() =>
+                Application.Current.MainPage.DisplayAlert(title, message, "OK"));
+        }
+
     }
 }

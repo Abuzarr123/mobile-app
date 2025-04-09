@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using assignment_2425.Models;
 using Microsoft.Maui.Devices;
 using Newtonsoft.Json.Linq;
-
+// add some error handling for barcode scanning 
 namespace assignment_2425.ViewModels
 {
     public partial class BarcodeScanningViewModel : ObservableObject
@@ -32,9 +32,9 @@ namespace assignment_2425.ViewModels
                 }
 
                 WeakReferenceMessenger.Default.Send(foodData);
+              
             }
-
-            MainThread.BeginInvokeOnMainThread(async () =>
+                MainThread.BeginInvokeOnMainThread(async () =>
             {
                 await Shell.Current.Navigation.PopAsync();
             });
@@ -52,11 +52,24 @@ namespace assignment_2425.ViewModels
 
                 var json = await response.Content.ReadAsStringAsync();
                 var data = JObject.Parse(json);
+
+                if (data["status"]?.Value<int>() == 0)
+                {
+                    await ShowAlert("Product Not Found", "This barcode doesn't exist in the OpenFoodFacts database.");
+                    return null;
+                }
+
                 var product = data["product"];
 
                 if (product != null)
                 {
                     string name = product.Value<string>("product_name") ?? "Unknown";
+
+                    if (string.IsNullOrWhiteSpace(name) || name == "Unknown")
+                    {
+                        await ShowAlert("Unrecognized Product", "We couldn't identify this product. Try another item or enter it manually.");
+                        return null;
+                    }
                     var nutrients = product["nutriments"];
 
                     int calories = (int?)nutrients?.Value<float?>("energy-kcal_100g") ?? 0;
@@ -74,13 +87,20 @@ namespace assignment_2425.ViewModels
                         Fats = fats
                     };
                 }
+                await ShowAlert("Data Error", "Failed to extract nutrition info from the product.");
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", $"API error: {ex.Message}", "OK");
+                Console.WriteLine("Error", $"API error: {ex.Message}", "OK");
             }
 
             return null;
         }
+        private async Task ShowAlert(string title, string message)
+        {
+            await MainThread.InvokeOnMainThreadAsync(() =>
+                Application.Current.MainPage.DisplayAlert(title, message, "OK"));
+        }
+
     }
 }
