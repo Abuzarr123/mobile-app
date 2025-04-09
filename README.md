@@ -1,4 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/rNdN2Yn1)
 The app is built in .Net Maui which is a cross platform app.
 My app is nutrition tracker app that helps the user track their calories for what they have had for the day. This app allows the user to manually add there 
 calories or scan barcodes of food or drinks to recieve their calories from a API. The data is stored using firebase and user authentication data is saved on firebase as well.
