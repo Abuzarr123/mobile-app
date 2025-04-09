@@ -16,8 +16,7 @@
                    SemanticProperties.Description="Welcome back" 
                    FontSize="26"
                    FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   TextColor="#00549E" />
+                   HorizontalOptions="Center" />
 
             <!-- Email Entry -->
             <Frame CornerRadius="12" BorderColor="#CCCCCC" HasShadow="False" Padding="10">

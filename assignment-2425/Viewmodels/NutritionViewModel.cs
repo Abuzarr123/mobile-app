@@ -8,7 +8,6 @@ using assignment_2425.Models;
 using System.Linq;
 using System.Windows.Input;
 
-//add some user error handling
 
 namespace assignment_2425.ViewModels
 {

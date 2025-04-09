@@ -19,7 +19,7 @@
                 Text="Hello, welcome to your personal calorie app. This app will help you track your calorie intake that you are having on a daily basis!"
                 FontSize="{DynamicResource AppFontSize}"
                 SemanticProperties.Description="This is your personal calorie app to track your daily nutrion intake"
-                TextColor="Black"
+                FontAttributes="Bold"
                 HorizontalTextAlignment="Center"
                 SemanticProperties.HeadingLevel="Level1" />
 

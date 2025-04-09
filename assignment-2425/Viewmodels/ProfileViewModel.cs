@@ -53,5 +53,53 @@ namespace assignment_2425.ViewModels
                 await firestoreService.DeleteCalorieData(userId, item); 
             }
         }
+        [RelayCommand]
+        private async Task EditCalorie(CalorieRecord item)
+        {
+            if (item == null) return;
+
+            // Prompt user for updated values
+            string newFoodName = await Application.Current.MainPage.DisplayPromptAsync("Edit Food Name", "Enter new food name:", initialValue: item.FoodName);
+            string newCalories = await Application.Current.MainPage.DisplayPromptAsync("Edit Calories", "Enter new calorie value:", initialValue: item.Calories.Replace(" kcal", ""), keyboard: Keyboard.Numeric);
+            string newProtein = await Application.Current.MainPage.DisplayPromptAsync("Edit Protein", "Enter new protein amount (g):", initialValue: item.protein.ToString(), keyboard: Keyboard.Numeric);
+            string newCarbs = await Application.Current.MainPage.DisplayPromptAsync("Edit Carbohydrates", "Enter new carbohydrate amount (g):", initialValue: item.carbohydrates.ToString(), keyboard: Keyboard.Numeric);
+            string newFats = await Application.Current.MainPage.DisplayPromptAsync("Edit Fats", "Enter new fat amount (g):", initialValue: item.fats.ToString(), keyboard: Keyboard.Numeric);
+
+            // Validation
+            if (string.IsNullOrWhiteSpace(newFoodName) ||
+                !int.TryParse(newCalories, out int updatedCalories) ||
+                !int.TryParse(newProtein, out int updatedProtein) ||
+                !int.TryParse(newCarbs, out int updatedCarbs) ||
+                !int.TryParse(newFats, out int updatedFats))
+            {
+                await Application.Current.MainPage.DisplayAlert("Invalid Input", "Please enter valid numbers for all nutritional values.", "OK");
+                return;
+            }
+
+            // Remove old entry
+            CalorieRecords.Remove(item);
+
+            // Create new updated item
+            var updatedItem = new CalorieRecord
+            {
+                Date = item.Date,
+                Calories = $"{updatedCalories} kcal",
+                FoodName = newFoodName,
+                protein = updatedProtein,
+                carbohydrates = updatedCarbs,
+                fats = updatedFats
+            };
+
+            CalorieRecords.Add(updatedItem);
+
+            // Update Firebase
+            string userId = await SecureStorage.GetAsync("firebase_uid");
+
+            if (!string.IsNullOrEmpty(userId))
+            {
+                await firestoreService.DeleteCalorieData(userId, item);
+                await firestoreService.SaveCalorieData(userId, updatedCalories, newFoodName, updatedProtein, updatedCarbs, updatedFats);
+            }
+        }
     }
 }

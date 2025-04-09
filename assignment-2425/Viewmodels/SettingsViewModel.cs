@@ -40,7 +40,7 @@ namespace assignment_2425
             }
         }
 
-        private async Task PickFromGalleryAsync()
+        private async Task PickFromGalleryAsync() //pick a photo from gallery
         {
             try
             {

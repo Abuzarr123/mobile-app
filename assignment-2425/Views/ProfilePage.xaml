@@ -28,7 +28,15 @@
                                    CommandParameter="{Binding .}" />
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Edit"
+                                               BackgroundColor="#00549E"
+                                               Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProfileViewModel}}, Path=EditCalorieCommand}"
+                                               CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+
                             <Frame Padding="10" Margin="5" BorderColor="Gray">
                             <VerticalStackLayout>
                                 <Label Text="{Binding Date}" FontSize="{DynamicResource AppFontSize}" FontAttributes="Bold" TextColor="Black"/>

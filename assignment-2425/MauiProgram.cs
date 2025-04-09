@@ -16,7 +16,7 @@ namespace assignment_2425
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
-                
+
 
 
             CopyFirebaseCredentials(); // Copy Firestore Credentials on App Start
@@ -25,7 +25,7 @@ namespace assignment_2425
         }
 
         private static void CopyFirebaseCredentials()// firebasecredentials.json file being added
-        {
+        {   
             string sourceFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "Raw", "firebase_credentials.json");
             string destinationFile = Path.Combine(FileSystem.AppDataDirectory, "firebase_credentials.json");
 
