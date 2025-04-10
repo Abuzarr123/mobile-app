@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:vm="clr-namespace:assignment_2425.ViewModels"
+             x:Class="assignment_2425.Views.AnalyticsPage"
+             Title="Analytics">
+
+    <ContentPage.BindingContext>
+        <vm:AnalyticsViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Calorie Intake Overview"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <charts:SfCartesianChart>
+                <charts:SfCartesianChart.XAxes>
+                    <charts:CategoryAxis Name="Date" />
+                </charts:SfCartesianChart.XAxes>
+
+                <charts:SfCartesianChart.YAxes>
+                    <charts:NumericalAxis Name="Calories" />
+                </charts:SfCartesianChart.YAxes>
+
+                <charts:SfCartesianChart.Series>
+                    <charts:ColumnSeries ItemsSource="{Binding CalorieData}"
+                                         XBindingPath="Date"
+                                         YBindingPath="Calories"
+                                         ShowDataLabels="True"
+                                         Fill="#00549E"
+                                         Spacing="0.4">
+                        <charts:ColumnSeries.DataLabelSettings>
+                            <charts:CartesianDataLabelSettings>
+                                <charts:CartesianDataLabelSettings.LabelStyle>
+                                    <charts:ChartDataLabelStyle FontSize="9" />
+                                </charts:CartesianDataLabelSettings.LabelStyle>
+                            </charts:CartesianDataLabelSettings>
+                        </charts:ColumnSeries.DataLabelSettings>
+                    </charts:ColumnSeries>
+                </charts:SfCartesianChart.Series>
+            </charts:SfCartesianChart>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

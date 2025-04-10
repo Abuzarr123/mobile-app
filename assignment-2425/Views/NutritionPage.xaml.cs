@@ -25,6 +25,7 @@ namespace assignment_2425
                 if (confirm)
                 {
                     MessagingCenter.Send(this, "ClearProfileData");
+                    MessagingCenter.Send(this, "ClearAnalyticsdata");
                     SecureStorage.Remove("firebase_token");
                     SecureStorage.Remove("firebase_uid");
                     await Shell.Current.GoToAsync("//MainPage");

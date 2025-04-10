@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Microsoft.Maui.Storage;
+using Syncfusion.Maui.Core.Hosting;
 using ZXing.Net.Maui.Controls;
 
 namespace assignment_2425
@@ -11,6 +12,7 @@ namespace assignment_2425
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseBarcodeReader() // register Zxing
+                .ConfigureSyncfusionCore() // registering syncfusion
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {

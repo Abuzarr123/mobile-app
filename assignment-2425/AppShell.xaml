@@ -56,6 +56,12 @@
                 ContentTemplate="{DataTemplate local:Settingspage}"
                 Route="Settingspage" />
         </Tab>
+        <Tab Title="Analytics" Icon="analytics.svg">
+            <ShellContent 
+                 Title="Analytics"
+                 ContentTemplate="{DataTemplate views:AnalyticsPage}"
+                 Route="Anatylicspage" />
+        </Tab>
 
     </TabBar>
 </Shell>
