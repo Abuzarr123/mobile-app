@@ -5,6 +5,13 @@ My app is nutrition tracker app that helps the user track their calories for wha
 calories or scan barcodes of food or drinks to recieve their calories from a API. The data is stored using firebase and user authentication data is saved on firebase as well.
 It has multiple user accessibility features that follow the WCAG guidelines such as dark mode, adjustable font size toggle on or off features such as haptic feedback.
 
+Brief Development plan
+- create a app so user can record their daily calories
+- have sign in/ sign up set up using firebase
+- have a database set up for the users to where there calories are displayed in the profile page
+- have barcode scanning for products
+- have good accessbility features that follow WCAG guidelines
+
 Features 
 - User authentication such as email/password for sign up and login in. this is saved on firebase.
 - Secure storage of Firebase UID using Securestorage.
