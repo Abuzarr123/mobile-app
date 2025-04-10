@@ -23,7 +23,7 @@ namespace assignment_2425.ViewModels
             });
         }
 
-        private async void LoadFirebaseDataAsync()
+        private async void LoadFirebaseDataAsync() //loads the user data from firebase 
         {
             string userId = await SecureStorage.GetAsync("firebase_uid");
             if (string.IsNullOrEmpty(userId)) return;
@@ -44,7 +44,7 @@ namespace assignment_2425.ViewModels
                 }
             }
         }
-        public async Task RefreshDataAsync()
+        public async Task RefreshDataAsync() // refreshes the data 
         {
             string userId = await SecureStorage.GetAsync("firebase_uid");
             if (string.IsNullOrEmpty(userId)) return;
