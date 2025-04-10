@@ -44,7 +44,7 @@ namespace assignment_2425.ViewModels
 
                 await ShowAlert("Success", "You are now logged in!");
                 await Shell.Current.GoToAsync("//NutritionPage");
-                await TriggerSuccessHaptic();
+                await TriggerSuccessVibration();
             }
             catch (FirebaseAuthException ex)
             {
@@ -73,14 +73,14 @@ namespace assignment_2425.ViewModels
 
             if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
             {
-                await TriggerWarningHaptic();
+                await TriggerWarningVibration();
                 await ShowAlert("Sign Up Error", "Please enter both email and password.");
                 return;
             }
 
             if (Password.Length < 6)
             {
-                await TriggerWarningHaptic();
+                await TriggerWarningVibration();
                 await ShowAlert("Sign Up Error", "Password must be at least 6 characters.");
                 return;
             }
@@ -88,12 +88,12 @@ namespace assignment_2425.ViewModels
             try
             {
                 await _authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
-                await TriggerSuccessHaptic();
+                await TriggerSuccessVibration();
                 await ShowAlert("Success", "You have successfully signed up.");
             }
             catch (FirebaseAuthException ex)
             {
-                await TriggerWarningHaptic(); // feedback triggers if not successfull for longer periods
+                await TriggerWarningVibration(); // feedback triggers if not successfull for longer periods
 
                 string message = ex.Reason switch
                 {
@@ -106,7 +106,7 @@ namespace assignment_2425.ViewModels
             }
             catch
             {
-                await TriggerWarningHaptic();
+                await TriggerWarningVibration();
                 await ShowAlert("Error", "Something went wrong. Please try again.");
             }
         }
@@ -117,7 +117,7 @@ namespace assignment_2425.ViewModels
                 Application.Current.MainPage.DisplayAlert(title, message, "OK"));
         }
 
-        private async Task TriggerSuccessHaptic() // function for haptic feedback
+        private async Task TriggerSuccessVibration() // function for vibration
         {
             
 
@@ -125,7 +125,7 @@ namespace assignment_2425.ViewModels
             Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(100)); 
         }
 
-        private async Task TriggerWarningHaptic() // function for haptic feedback
+        private async Task TriggerWarningVibration() // function for vibration
         {
             await RequestVibrationPermission();
             Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(300));
