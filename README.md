@@ -1,3 +1,5 @@
+Nutrition tracker app
+
 The app is built in .Net Maui which is a cross platform app.
 My app is nutrition tracker app that helps the user track their calories for what they have had for the day. This app allows the user to manually add there 
 calories or scan barcodes of food or drinks to recieve their calories from a API. The data is stored using firebase and user authentication data is saved on firebase as well.
