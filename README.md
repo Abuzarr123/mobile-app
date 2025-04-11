@@ -2,7 +2,7 @@ Nutrition tracker app
 
 The app is built in .Net Maui which is a cross platform app.
 My app is nutrition tracker app that helps the user track their calories for what they have had for the day. This app allows the user to manually add there 
-calories or scan barcodes of food or drinks to recieve their calories from a API. The data is stored using firebase and user authentication data is saved on firebase as well.
+calories or scan barcodes of food or drinks to recieve their calories from a API. user can view their calories recorded on a analytics page. The data is stored using firebase and user authentication data is saved on firebase as well.
 It has multiple user accessibility features that follow the WCAG guidelines such as dark mode, adjustable font size toggle on or off features such as haptic feedback.
 
 Brief Development plan
@@ -23,6 +23,7 @@ Features
 - swipe left on a profile to delete individual entries and this also gets deleted from the firebase database. swipe right on a profile to edit a profiles information and then this gets updated in the firebase database.
 - Accessbility features such as screen reader using semanticproperties. Also WCAG aligned changing on the font. UI adapts to tablet and phone. other feautres such as toggling on and off for the hardware features such as haptic feddback, text to speech.
 - user can also use the camera to add a profile picture.
+- have a analytics page so user can the view the calories they have had on a specific date
 
 Technologies used
 - .Net MAUI (8.0)
@@ -32,6 +33,7 @@ Technologies used
 - Communitytoolkit.mvvm
 - Zxing.Net.MAUI used for barcode scanning 
 - secure storage 
+- syncfusion for charts
 
 Mobile Hardware used
 - Camera (used for barcode scannnig and for taking a profile picture)
@@ -40,7 +42,7 @@ Mobile Hardware used
 - Haptic feedback (used on buttons duing login/sign up)
 
 Future Work
-- In the future I would like to add a analytics page where the user could you see trends in their calories over periods of time.
+- In the future the analytics page has more information on such as trends for the specific user.
 - maybe add some goals for the user
 - add support for different languages
 - deploy the app to the google playstore
