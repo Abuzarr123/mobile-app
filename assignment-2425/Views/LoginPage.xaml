@@ -17,7 +17,7 @@
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
-            <!-- Email Entry -->
+            <!--user can enter their email -->
             <Frame CornerRadius="12" BorderColor="#CCCCCC" HasShadow="False" Padding="10">
                 <Entry Placeholder="Email"
                        SemanticProperties.Description="enter your email"
@@ -27,7 +27,7 @@
                        TextColor="Black" />
             </Frame>
 
-            <!-- Password Entry -->
+            <!-- user can enter their password -->
             <Frame CornerRadius="12" BorderColor="#CCCCCC" HasShadow="False" Padding="10">
                 <Entry Placeholder="Password"
                        SemanticProperties.Description="enter your password"
