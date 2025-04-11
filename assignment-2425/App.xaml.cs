@@ -20,7 +20,7 @@ namespace assignment_2425
         private bool isAlertDisplayed = false;
 
 
-        private async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        private async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e) // function for if internet connectivity
         {
             var access = e.NetworkAccess;
 

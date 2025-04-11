@@ -91,6 +91,7 @@ namespace assignment_2425.ViewModels
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"Exception occurred while fetching product: {ex.Message}");
                 Console.WriteLine("Error", $"API error: {ex.Message}", "OK");
             }
 

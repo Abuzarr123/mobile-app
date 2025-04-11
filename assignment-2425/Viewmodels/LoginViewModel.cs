@@ -21,7 +21,15 @@ namespace assignment_2425.ViewModels
 
         public LoginViewModel()
         {
-            _authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBVnVmjhhb3tdb8XaIT_31IsEwYjQjN980")); //initialising the authprovider with the firebase key
+            try
+            {
+                _authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBVnVmjhhb3tdb8XaIT_31IsEwYjQjN980"));
+                Console.WriteLine("FirebaseAuthProvider successfully created.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: Firebase provider initialization failed: {ex.Message}");
+            }
         }
 
         [RelayCommand]
@@ -48,6 +56,8 @@ namespace assignment_2425.ViewModels
             }
             catch (FirebaseAuthException ex)
             {
+                Console.WriteLine($"[FirebaseAuthException] Reason: {ex.Reason}, Message: {ex.Message}");
+
                 string message = ex.Reason switch // string of error messages that are built in firebase auth
                 {
                     AuthErrorReason.WrongPassword => "Incorrect password. Please try again.",
@@ -80,6 +90,7 @@ namespace assignment_2425.ViewModels
 
             if (Password.Length < 6)
             {
+
                 await TriggerWarningVibration();
                 await ShowAlert("Sign Up Error", "Password must be at least 6 characters.");
                 return;
@@ -93,6 +104,8 @@ namespace assignment_2425.ViewModels
             }
             catch (FirebaseAuthException ex)
             {
+                Console.WriteLine($"FIREBASE SIGNUP ERROR: {ex.Reason}");
+
                 await TriggerWarningVibration(); // feedback triggers if not successfull for longer periods
 
                 string message = ex.Reason switch
@@ -106,6 +119,7 @@ namespace assignment_2425.ViewModels
             }
             catch
             {
+
                 await TriggerWarningVibration();
                 await ShowAlert("Error", "Something went wrong. Please try again.");
             }
