@@ -37,6 +37,7 @@
             Route="AboutPage"/>
     </ShellItem>
 
+    <!-- creating tab bar for app-->
     <TabBar Route="AppTabs">
         <Tab Title="Calories" Icon="calories_icon.svg">
             <ShellContent

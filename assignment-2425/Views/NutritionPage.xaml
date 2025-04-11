@@ -21,11 +21,12 @@
 
             <Label Text="Daily Nutrition Intake" FontSize="22" FontAttributes="Bold" />
 
+            <!-- text input for user manually adding calories -->
             <Entry Placeholder="Enter food name"
                    SemanticProperties.Description="Enter the name of your food"
                    Text="{Binding FoodName}"
                    HorizontalOptions="FillAndExpand" />
-
+            
             <Entry Placeholder="Enter calories"
                    Text="{Binding Calories}"
                    SemanticProperties.Description="enter your calories"
@@ -51,7 +52,7 @@
                        Keyboard="Numeric"
                        WidthRequest="100" />
             </HorizontalStackLayout>
-
+            <!-- button for adding calories -->
             <Button Text="Add Calories"
                     Command="{Binding AddCaloriesCommand}"
                     BackgroundColor="#00549E"
@@ -60,7 +61,7 @@
                     FontSize="{DynamicResource AppFontSize}"
                     CornerRadius="25"
                     WidthRequest="200" />
-
+            <!-- button for saving to profile-->
             <Button Text="Save to Profile"
                     Command="{Binding SaveCaloriesCommand}"
                     SemanticProperties.Description="click this button to save your calories to your profile"
@@ -76,7 +77,8 @@
 
             <Label Text="{Binding TotalCalories, StringFormat='{0} kcal'}"
                    FontSize="{DynamicResource AppFontSize}" />
-
+            
+            <!-- calorie food log-->
             <CollectionView ItemsSource="{Binding FoodLog}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -92,7 +94,8 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
+            
+            <!-- button for resetting caloires -->
             <Button Text="Reset Calories"
                     Command="{Binding ResetCaloriesCommand}"
                     BackgroundColor="#AD0000"
@@ -101,7 +104,7 @@
                     FontSize="{DynamicResource AppFontSize}"
                     CornerRadius="25"
                     WidthRequest="200" />
-
+            <!-- button for user scanning barcode -->
             <Button Text="Scan Barcode"
                     Command="{Binding ScanBarcodeCommand}"
                     BackgroundColor="#00549E"

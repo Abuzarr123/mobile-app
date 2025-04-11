@@ -15,13 +15,15 @@
                    SemanticProperties.Description="Your calorie history"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
-
+            
+            <!-- calorie food log-->
             <CollectionView ItemsSource="{Binding CalorieRecords}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems>
+                                    <!-- user can swipe left to delete-->
                                     <SwipeItem Text="Delete"
                                    BackgroundColor="#AD0000"
                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProfileViewModel}}, Path=DeleteCalorieCommand}"
@@ -30,6 +32,7 @@
                             </SwipeView.RightItems>
                             <SwipeView.LeftItems>
                                 <SwipeItems>
+                                    <!-- user can swipe right to delete-->
                                     <SwipeItem Text="Edit"
                                                BackgroundColor="#00549E"
                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProfileViewModel}}, Path=EditCalorieCommand}"

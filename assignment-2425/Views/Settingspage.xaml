@@ -24,7 +24,7 @@
                    BackgroundColor="#e0e0e0"
                    Margin="0,10"
                    SemanticProperties.Description="Your selected profile image" />
-
+            <!-- user chaning profile picture -->
             <Button Text="Change Picture"
                     Command="{Binding ChangeProfilePictureCommand}"
                     FontSize="{DynamicResource AppFontSize}"
@@ -39,7 +39,7 @@
                    FontSize="20"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"/>
-
+            <!--user can choose font size they would like-->
             <Picker Title="Choose Font Size"
                     ItemsSource="{Binding FontSizeOptions}"
                     SelectedItem="{Binding SelectedFontSize}"
@@ -53,28 +53,28 @@
             <Label Text="Enable/disable text to speech"
                    FontSize="{Binding FontSizeValue}"
                    HorizontalOptions="Center" />
-
+            <!-- toggle switches -->
             <Switch IsToggled="{Binding IsTextToSpeechEnabled}"
                     SemanticProperties.Description="Toggle text to speech on or off" />
 
             <Label Text="Enable/disable haptic feedback"
                    FontSize="{Binding FontSizeValue}"
                    HorizontalOptions="Center" />
-
+            <!-- toggle switches -->
             <Switch IsToggled="{Binding IsHapticEnabled}"
                     SemanticProperties.Description="Toggle haptic feedback on or off" />
             
             <Label Text="Enable/disable vibration"
                    FontSize="{Binding FontSizeValue}"
                    HorizontalOptions="Center" />
-
+            <!-- toggle switches -->
             <Switch IsToggled="{Binding IsVibrationEnabled}"
                     SemanticProperties.Description="Toggle haptic feedback on or off" />
 
             <Label Text="Dark Mode"
                    FontSize="{Binding FontSizeValue}"
                    HorizontalOptions="Center" />
-
+            <!-- toggle switches -->
             <Switch IsToggled="{Binding IsDarkModeEnabled}" 
                     SemanticProperties.Description="Toggle dark mode on or off"/>
 

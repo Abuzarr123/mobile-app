@@ -3,7 +3,7 @@
              xmlns:viewModels="clr-namespace:assignment_2425.ViewModels"
              x:Class="assignment_2425.LoginPage"
              Title="Login Page">
-
+     
     <ContentPage.BindingContext>
         <viewModels:LoginViewModel />
     </ContentPage.BindingContext>
